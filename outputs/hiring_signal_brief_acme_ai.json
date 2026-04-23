@@ -1,7 +1,7 @@
 {
   "prospect_domain": "acme-ai.com",
   "prospect_name": "Acme AI",
-  "generated_at": "2026-04-23T16:50:24.474438+00:00",
+  "generated_at": "2026-04-23T17:35:27.596053+00:00",
   "primary_segment_match": "segment_4_specialized_capability",
   "segment_confidence": 0.7,
   "ai_maturity": {
@@ -45,6 +45,7 @@
     "open_roles_60_days_ago": 0,
     "velocity_label": "insufficient_signal",
     "signal_confidence": 0.3,
+    "confidence_label": "low",
     "sources": [
       "remoteok_jobs"
     ]
@@ -57,21 +58,25 @@
       "closed_at": "2026-01-23",
       "days_ago": 90,
       "valid_for_segment1": true,
-      "source_url": "https://acme-ai.com"
+      "source_url": "https://acme-ai.com",
+      "signal_confidence": "medium"
     },
     "layoff_event": {
       "detected": false,
       "date": null,
       "headcount_reduction": 0,
       "percentage_cut": 0.0,
-      "source_url": "https://layoffs.fyi"
+      "source_url": "https://layoffs.fyi",
+      "signal_confidence": "low"
     },
     "leadership_change": {
       "detected": false,
       "role": "none",
       "new_leader_name": null,
       "started_at": null,
-      "source_url": null
+      "source_url": null,
+      "signal_confidence": "medium",
+      "detection_method": "mock"
     }
   },
   "tech_stack": [
@@ -88,25 +93,47 @@
     {
       "source": "crunchbase_odm",
       "status": "success",
-      "fetched_at": "2026-04-23T16:50:15.598616+00:00"
+      "confidence": "low",
+      "fetched_at": "2026-04-23T17:35:27.485535+00:00"
+    },
+    {
+      "source": "crunchbase_funding",
+      "status": "success",
+      "confidence": "medium",
+      "fetched_at": "2026-04-23T17:35:27.486413+00:00"
     },
     {
       "source": "layoffs_fyi",
-      "status": "success",
-      "fetched_at": "2026-04-23T16:50:15.599482+00:00"
+      "status": "no_data",
+      "confidence": "low",
+      "fetched_at": "2026-04-23T17:35:27.486451+00:00"
     },
     {
       "source": "remoteok_jobs",
       "status": "no_data",
-      "fetched_at": "2026-04-23T16:50:24.473131+00:00"
+      "confidence": "low",
+      "job_count": 0,
+      "fetched_at": "2026-04-23T17:35:27.595577+00:00"
     },
     {
-      "source": "crunchbase_people",
-      "status": "partial",
-      "fetched_at": "2026-04-23T16:50:24.473195+00:00"
+      "source": "leadership_detection",
+      "status": "no_data",
+      "confidence": "medium",
+      "method": "mock",
+      "fetched_at": "2026-04-23T17:35:27.595642+00:00"
     }
   ],
   "honesty_flags": [
-    "weak_hiring_velocity_signal"
-  ]
+    "weak_hiring_velocity_signal",
+    "tech_stack_inferred_not_confirmed"
+  ],
+  "signal_confidence_summary": {
+    "crunchbase_firmographics": "low",
+    "funding_event": "medium",
+    "layoff_event": "low",
+    "leadership_change": "medium",
+    "hiring_velocity": "low",
+    "ai_maturity": "medium",
+    "overall_brief_confidence": "high"
+  }
 }

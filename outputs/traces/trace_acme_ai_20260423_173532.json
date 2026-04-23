@@ -1,0 +1,70 @@
+{
+  "prospect": {
+    "company": "Acme AI",
+    "email": "alex.chen@acme-ai.com",
+    "name": "Alex Chen",
+    "domain": "acme-ai.com"
+  },
+  "started_at": "2026-04-23T17:35:27.439775",
+  "steps": {
+    "enrichment": {
+      "status": "success",
+      "segment": "segment_4_specialized_capability",
+      "confidence": 0.7,
+      "ai_maturity": 3,
+      "honesty_flags": [
+        "weak_hiring_velocity_signal",
+        "tech_stack_inferred_not_confirmed"
+      ],
+      "latency_seconds": 0.16,
+      "completed_at": "2026-04-23T17:35:27.596907"
+    },
+    "email_composition": {
+      "status": "success",
+      "subject": "Question: ML capability gap",
+      "word_count": 78,
+      "tone_score": 5,
+      "tone_violations": [],
+      "segment": "segment_4_specialized_capability",
+      "latency_seconds": 0.0,
+      "completed_at": "2026-04-23T17:35:27.598703"
+    },
+    "hubspot_enrichment": {
+      "status": "success",
+      "contact_id": "763352609989",
+      "icp_segment": "segment_4_specialized_capability",
+      "enrichment_timestamp": "2026-04-23T17:35:27.596053+00:00",
+      "latency_seconds": 4.23,
+      "completed_at": "2026-04-23T17:35:31.825675"
+    },
+    "email_sent": {
+      "status": "dry_run",
+      "to": "alex.chen@acme-ai.com",
+      "subject": "Question: ML capability gap",
+      "dry_run": true,
+      "channel": "email_primary",
+      "channel_note": "Email is primary channel. SMS only sent after prospect replies.",
+      "latency_seconds": 0.0,
+      "completed_at": "2026-04-23T17:35:31.827505"
+    },
+    "booking": {
+      "status": "skipped",
+      "reason": "Segment confidence 70% below 75% threshold"
+    }
+  },
+  "status": "completed",
+  "latency": {
+    "enrichment": 0.16,
+    "email_composition": 0.0,
+    "hubspot": 4.23,
+    "email_send": 0.0,
+    "total": 4.39
+  },
+  "channel_hierarchy": {
+    "primary": "email",
+    "secondary": "sms_after_email_reply",
+    "final": "voice_discovery_call"
+  },
+  "completed_at": "2026-04-23T17:35:31.829847",
+  "langfuse_trace_id": "38814d4a2302d781d9f40d6fe7e8506c"
+}
