@@ -1,0 +1,60 @@
+{
+  "prospect": {
+    "company": "DataBridge",
+    "email": "cto@databridge.io",
+    "name": "Lisa Zhang",
+    "domain": "databridge.io"
+  },
+  "started_at": "2026-04-23T15:06:07.944099",
+  "steps": {
+    "enrichment": {
+      "status": "success",
+      "segment": "segment_4_specialized_capability",
+      "confidence": 0.7,
+      "ai_maturity": 3,
+      "honesty_flags": [
+        "weak_hiring_velocity_signal"
+      ],
+      "latency_seconds": 0.16,
+      "completed_at": "2026-04-23T15:06:08.107052"
+    },
+    "email_composition": {
+      "status": "success",
+      "subject": "Question: ML capability gap",
+      "word_count": 77,
+      "tone_score": 5,
+      "tone_violations": [],
+      "segment": "segment_4_specialized_capability",
+      "latency_seconds": 0.0,
+      "completed_at": "2026-04-23T15:06:08.108197"
+    },
+    "hubspot": {
+      "status": "success",
+      "contact_id": "763350440127",
+      "latency_seconds": 3.63,
+      "completed_at": "2026-04-23T15:06:11.741664"
+    },
+    "email_sent": {
+      "status": "dry_run",
+      "to": "cto@databridge.io",
+      "subject": "Question: ML capability gap",
+      "dry_run": true,
+      "latency_seconds": 0.0,
+      "completed_at": "2026-04-23T15:06:11.743894"
+    },
+    "booking": {
+      "status": "skipped",
+      "reason": "Low confidence: 70%"
+    }
+  },
+  "status": "completed",
+  "latency": {
+    "enrichment": 0.16,
+    "email_composition": 0.0,
+    "hubspot": 3.63,
+    "email_send": 0.0,
+    "total": 3.8
+  },
+  "completed_at": "2026-04-23T15:06:11.744691",
+  "langfuse_trace_id": "7aa045547ac65bff779e47b54a55b09d"
+}

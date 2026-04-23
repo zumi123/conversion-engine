@@ -1,0 +1,61 @@
+{
+  "prospect": {
+    "company": "PipelineIO",
+    "email": "vpe@pipeline.io",
+    "name": "Ben Taylor",
+    "domain": "pipeline.io"
+  },
+  "started_at": "2026-04-23T15:06:53.777744",
+  "steps": {
+    "enrichment": {
+      "status": "success",
+      "segment": "segment_4_specialized_capability",
+      "confidence": 0.7,
+      "ai_maturity": 3,
+      "honesty_flags": [
+        "weak_hiring_velocity_signal",
+        "weak_ai_maturity_signal"
+      ],
+      "latency_seconds": 0.15,
+      "completed_at": "2026-04-23T15:06:53.928714"
+    },
+    "email_composition": {
+      "status": "success",
+      "subject": "Question: ML capability gap",
+      "word_count": 77,
+      "tone_score": 5,
+      "tone_violations": [],
+      "segment": "segment_4_specialized_capability",
+      "latency_seconds": 0.0,
+      "completed_at": "2026-04-23T15:06:53.929979"
+    },
+    "hubspot": {
+      "status": "success",
+      "contact_id": "763408607426",
+      "latency_seconds": 3.21,
+      "completed_at": "2026-04-23T15:06:57.140902"
+    },
+    "email_sent": {
+      "status": "dry_run",
+      "to": "vpe@pipeline.io",
+      "subject": "Question: ML capability gap",
+      "dry_run": true,
+      "latency_seconds": 0.0,
+      "completed_at": "2026-04-23T15:06:57.143004"
+    },
+    "booking": {
+      "status": "skipped",
+      "reason": "Low confidence: 70%"
+    }
+  },
+  "status": "completed",
+  "latency": {
+    "enrichment": 0.15,
+    "email_composition": 0.0,
+    "hubspot": 3.21,
+    "email_send": 0.0,
+    "total": 3.37
+  },
+  "completed_at": "2026-04-23T15:06:57.143798",
+  "langfuse_trace_id": "b05405e5497c00cf25aece89928883b9"
+}

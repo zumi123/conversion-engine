@@ -1,0 +1,61 @@
+{
+  "prospect": {
+    "company": "StreamData",
+    "email": "cto@streamdata.io",
+    "name": "Carlos Rodriguez",
+    "domain": "streamdata.io"
+  },
+  "started_at": "2026-04-23T15:06:46.427483",
+  "steps": {
+    "enrichment": {
+      "status": "success",
+      "segment": "abstain",
+      "confidence": 0.4,
+      "ai_maturity": 1,
+      "honesty_flags": [
+        "weak_hiring_velocity_signal",
+        "weak_ai_maturity_signal"
+      ],
+      "latency_seconds": 0.16,
+      "completed_at": "2026-04-23T15:06:46.588840"
+    },
+    "email_composition": {
+      "status": "success",
+      "subject": "Question: Engineering capacity at your stage",
+      "word_count": 50,
+      "tone_score": 5,
+      "tone_violations": [],
+      "segment": "abstain",
+      "latency_seconds": 0.0,
+      "completed_at": "2026-04-23T15:06:46.590082"
+    },
+    "hubspot": {
+      "status": "success",
+      "contact_id": "763361631431",
+      "latency_seconds": 3.13,
+      "completed_at": "2026-04-23T15:06:49.717729"
+    },
+    "email_sent": {
+      "status": "dry_run",
+      "to": "cto@streamdata.io",
+      "subject": "Question: Engineering capacity at your stage",
+      "dry_run": true,
+      "latency_seconds": 0.0,
+      "completed_at": "2026-04-23T15:06:49.720559"
+    },
+    "booking": {
+      "status": "skipped",
+      "reason": "Low confidence: 40%"
+    }
+  },
+  "status": "completed",
+  "latency": {
+    "enrichment": 0.16,
+    "email_composition": 0.0,
+    "hubspot": 3.13,
+    "email_send": 0.0,
+    "total": 3.29
+  },
+  "completed_at": "2026-04-23T15:06:49.721403",
+  "langfuse_trace_id": "51235a0b1a2654e4056143b0e3cfef4d"
+}

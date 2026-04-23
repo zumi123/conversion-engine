@@ -1,0 +1,61 @@
+{
+  "prospect": {
+    "company": "BuildFast",
+    "email": "vpe@buildfast.dev",
+    "name": "Sophie Turner",
+    "domain": "buildfast.dev"
+  },
+  "started_at": "2026-04-23T15:06:36.079231",
+  "steps": {
+    "enrichment": {
+      "status": "success",
+      "segment": "abstain",
+      "confidence": 0.4,
+      "ai_maturity": 0,
+      "honesty_flags": [
+        "weak_hiring_velocity_signal",
+        "weak_ai_maturity_signal"
+      ],
+      "latency_seconds": 0.16,
+      "completed_at": "2026-04-23T15:06:36.242813"
+    },
+    "email_composition": {
+      "status": "success",
+      "subject": "Question: Engineering capacity at your stage",
+      "word_count": 50,
+      "tone_score": 5,
+      "tone_violations": [],
+      "segment": "abstain",
+      "latency_seconds": 0.0,
+      "completed_at": "2026-04-23T15:06:36.243837"
+    },
+    "hubspot": {
+      "status": "success",
+      "contact_id": "763415959799",
+      "latency_seconds": 3.19,
+      "completed_at": "2026-04-23T15:06:39.433517"
+    },
+    "email_sent": {
+      "status": "dry_run",
+      "to": "vpe@buildfast.dev",
+      "subject": "Question: Engineering capacity at your stage",
+      "dry_run": true,
+      "latency_seconds": 0.0,
+      "completed_at": "2026-04-23T15:06:39.435616"
+    },
+    "booking": {
+      "status": "skipped",
+      "reason": "Low confidence: 40%"
+    }
+  },
+  "status": "completed",
+  "latency": {
+    "enrichment": 0.16,
+    "email_composition": 0.0,
+    "hubspot": 3.19,
+    "email_send": 0.0,
+    "total": 3.36
+  },
+  "completed_at": "2026-04-23T15:06:39.436431",
+  "langfuse_trace_id": "ca776436b78693f73cce5cf1c382ac77"
+}

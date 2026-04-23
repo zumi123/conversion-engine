@@ -1,0 +1,61 @@
+{
+  "prospect": {
+    "company": "Inframatic",
+    "email": "cto@inframatic.dev",
+    "name": "Chris Brown",
+    "domain": "inframatic.dev"
+  },
+  "started_at": "2026-04-23T15:06:25.801802",
+  "steps": {
+    "enrichment": {
+      "status": "success",
+      "segment": "abstain",
+      "confidence": 0.4,
+      "ai_maturity": 1,
+      "honesty_flags": [
+        "weak_hiring_velocity_signal",
+        "weak_ai_maturity_signal"
+      ],
+      "latency_seconds": 0.15,
+      "completed_at": "2026-04-23T15:06:25.954349"
+    },
+    "email_composition": {
+      "status": "success",
+      "subject": "Question: Engineering capacity at your stage",
+      "word_count": 50,
+      "tone_score": 5,
+      "tone_violations": [],
+      "segment": "abstain",
+      "latency_seconds": 0.0,
+      "completed_at": "2026-04-23T15:06:25.956042"
+    },
+    "hubspot": {
+      "status": "success",
+      "contact_id": "763406981353",
+      "latency_seconds": 3.02,
+      "completed_at": "2026-04-23T15:06:28.978239"
+    },
+    "email_sent": {
+      "status": "dry_run",
+      "to": "cto@inframatic.dev",
+      "subject": "Question: Engineering capacity at your stage",
+      "dry_run": true,
+      "latency_seconds": 0.0,
+      "completed_at": "2026-04-23T15:06:28.980373"
+    },
+    "booking": {
+      "status": "skipped",
+      "reason": "Low confidence: 40%"
+    }
+  },
+  "status": "completed",
+  "latency": {
+    "enrichment": 0.15,
+    "email_composition": 0.0,
+    "hubspot": 3.02,
+    "email_send": 0.0,
+    "total": 3.18
+  },
+  "completed_at": "2026-04-23T15:06:28.981177",
+  "langfuse_trace_id": "ac1147facb4c27778ccfada1eac80022"
+}

@@ -1,0 +1,50 @@
+{
+  "runs": [
+    {
+      "run_id": "baseline_dev_tier_preflight",
+      "date": "2026-04-22",
+      "domain": "retail",
+      "model": "openrouter/qwen/qwen3-235b-a22b",
+      "num_tasks": 3,
+      "num_trials": 1,
+      "pass_at_1": 0.667,
+      "average_reward": 0.6667,
+      "db_match": 1.0,
+      "avg_cost_per_conversation": 0.0,
+      "notes": "Day 0 pre-flight check - 3 tasks only - not statistically significant"
+    },
+    {
+      "run_id": "baseline_dev_tier_act1",
+      "date": "2026-04-22",
+      "domain": "retail",
+      "model": "openrouter/qwen/qwen3-235b-a22b",
+      "num_tasks": 30,
+      "num_trials": 5,
+      "total_simulations": 150,
+      "evaluated": 147,
+      "infra_errors": 3,
+      "pass_at_1": 0.268,
+      "pass_at_2": 0.120,
+      "pass_at_3": 0.070,
+      "pass_at_4": 0.047,
+      "average_reward": 0.2721,
+      "confidence_interval_95": {
+        "lower": 0.195,
+        "upper": 0.341,
+        "method": "Wilson score interval",
+        "n": 147,
+        "formula": "p +/- 1.96 * sqrt(p*(1-p)/n)"
+      },
+      "read_actions_pct": 0.585,
+      "write_actions_pct": 0.357,
+      "db_match_pct": 0.327,
+      "avg_cost_per_conversation": 0.0,
+      "published_reference": 0.42,
+      "published_reference_ci": "not published",
+      "delta_vs_reference": -0.152,
+      "notes": "Act I official baseline - dev tier model - 5 trials 30 tasks - use this as official baseline"
+    }
+  ],
+  "official_baseline": "baseline_dev_tier_act1",
+  "notes": "First run was 3 tasks only - too small to be statistically significant. Act I run with 30 tasks and 5 trials is the official baseline."
+}

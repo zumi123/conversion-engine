@@ -1,0 +1,60 @@
+{
+  "prospect": {
+    "company": "ScaleAI Corp",
+    "email": "founder@scaleai.co",
+    "name": "Ahmed Hassan",
+    "domain": "scaleai.co"
+  },
+  "started_at": "2026-04-23T15:06:11.889249",
+  "steps": {
+    "enrichment": {
+      "status": "success",
+      "segment": "segment_4_specialized_capability",
+      "confidence": 0.7,
+      "ai_maturity": 3,
+      "honesty_flags": [
+        "weak_hiring_velocity_signal"
+      ],
+      "latency_seconds": 0.17,
+      "completed_at": "2026-04-23T15:06:12.061832"
+    },
+    "email_composition": {
+      "status": "success",
+      "subject": "Question: ML capability gap",
+      "word_count": 78,
+      "tone_score": 5,
+      "tone_violations": [],
+      "segment": "segment_4_specialized_capability",
+      "latency_seconds": 0.0,
+      "completed_at": "2026-04-23T15:06:12.062833"
+    },
+    "hubspot": {
+      "status": "success",
+      "contact_id": "763387037909",
+      "latency_seconds": 3.53,
+      "completed_at": "2026-04-23T15:06:15.592143"
+    },
+    "email_sent": {
+      "status": "dry_run",
+      "to": "founder@scaleai.co",
+      "subject": "Question: ML capability gap",
+      "dry_run": true,
+      "latency_seconds": 0.0,
+      "completed_at": "2026-04-23T15:06:15.594162"
+    },
+    "booking": {
+      "status": "skipped",
+      "reason": "Low confidence: 70%"
+    }
+  },
+  "status": "completed",
+  "latency": {
+    "enrichment": 0.17,
+    "email_composition": 0.0,
+    "hubspot": 3.53,
+    "email_send": 0.0,
+    "total": 3.71
+  },
+  "completed_at": "2026-04-23T15:06:15.594960",
+  "langfuse_trace_id": "4fc9de8baa4d9edfd42303d9f20276cc"
+}

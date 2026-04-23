@@ -1,0 +1,61 @@
+{
+  "prospect": {
+    "company": "PlatformX",
+    "email": "vpe@platformx.com",
+    "name": "Robert Lee",
+    "domain": "platformx.com"
+  },
+  "started_at": "2026-04-23T15:06:18.887750",
+  "steps": {
+    "enrichment": {
+      "status": "success",
+      "segment": "abstain",
+      "confidence": 0.4,
+      "ai_maturity": 0,
+      "honesty_flags": [
+        "weak_hiring_velocity_signal",
+        "weak_ai_maturity_signal"
+      ],
+      "latency_seconds": 0.15,
+      "completed_at": "2026-04-23T15:06:19.041261"
+    },
+    "email_composition": {
+      "status": "success",
+      "subject": "Question: Engineering capacity at your stage",
+      "word_count": 50,
+      "tone_score": 5,
+      "tone_violations": [],
+      "segment": "abstain",
+      "latency_seconds": 0.0,
+      "completed_at": "2026-04-23T15:06:19.042494"
+    },
+    "hubspot": {
+      "status": "success",
+      "contact_id": "763383296201",
+      "latency_seconds": 3.32,
+      "completed_at": "2026-04-23T15:06:22.368002"
+    },
+    "email_sent": {
+      "status": "dry_run",
+      "to": "vpe@platformx.com",
+      "subject": "Question: Engineering capacity at your stage",
+      "dry_run": true,
+      "latency_seconds": 0.0,
+      "completed_at": "2026-04-23T15:06:22.369992"
+    },
+    "booking": {
+      "status": "skipped",
+      "reason": "Low confidence: 40%"
+    }
+  },
+  "status": "completed",
+  "latency": {
+    "enrichment": 0.15,
+    "email_composition": 0.0,
+    "hubspot": 3.32,
+    "email_send": 0.0,
+    "total": 3.48
+  },
+  "completed_at": "2026-04-23T15:06:22.370792",
+  "langfuse_trace_id": "9e0d3fe5f3e82d5e4291f347ebbad2ad"
+}

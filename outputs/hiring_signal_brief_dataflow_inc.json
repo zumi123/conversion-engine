@@ -1,0 +1,118 @@
+{
+  "prospect_domain": "dataflow.io",
+  "prospect_name": "DataFlow Inc",
+  "generated_at": "2026-04-23T15:05:46.634675+00:00",
+  "primary_segment_match": "segment_4_specialized_capability",
+  "segment_confidence": 0.7,
+  "ai_maturity": {
+    "score": 3,
+    "confidence": 0.5,
+    "justifications": [
+      {
+        "signal": "ai_adjacent_open_roles",
+        "status": "Found 5 AI/ML open roles (33% of total openings)",
+        "weight": "high",
+        "confidence": "high"
+      },
+      {
+        "signal": "named_ai_ml_leadership",
+        "status": "AI/ML leadership role detected (Head of AI, VP Data, or equivalent)",
+        "weight": "high",
+        "confidence": "high"
+      },
+      {
+        "signal": "github_org_activity",
+        "status": "Recent AI/ML commits detected in public GitHub org",
+        "weight": "medium",
+        "confidence": "medium"
+      },
+      {
+        "signal": "executive_commentary",
+        "status": "CEO/CTO has publicly named AI as strategic priority in last 12 months",
+        "weight": "medium",
+        "confidence": "high"
+      },
+      {
+        "signal": "modern_data_ml_stack",
+        "status": "Modern ML/data stack detected (dbt, Snowflake, Databricks, etc.)",
+        "weight": "low",
+        "confidence": "medium"
+      },
+      {
+        "signal": "strategic_communications",
+        "status": "AI positioned as company priority in investor/press communications",
+        "weight": "low",
+        "confidence": "medium"
+      }
+    ]
+  },
+  "hiring_velocity": {
+    "open_roles_today": 0,
+    "open_roles_60_days_ago": 0,
+    "velocity_label": "insufficient_signal",
+    "signal_confidence": 0.3,
+    "sources": [
+      "remoteok_jobs"
+    ]
+  },
+  "buying_window_signals": {
+    "funding_event": {
+      "detected": true,
+      "stage": "series_a",
+      "amount_usd": 14000000,
+      "closed_at": "2026-01-23",
+      "days_ago": 90,
+      "valid_for_segment1": true,
+      "source_url": "https://dataflow.io"
+    },
+    "layoff_event": {
+      "detected": false,
+      "date": null,
+      "headcount_reduction": 0,
+      "percentage_cut": 0.0,
+      "source_url": "https://layoffs.fyi"
+    },
+    "leadership_change": {
+      "detected": false,
+      "role": "none",
+      "new_leader_name": null,
+      "started_at": null,
+      "source_url": null
+    }
+  },
+  "tech_stack": [
+    "ml"
+  ],
+  "bench_to_brief_match": {
+    "required_stacks": [
+      "ml"
+    ],
+    "bench_available": true,
+    "gaps": []
+  },
+  "data_sources_checked": [
+    {
+      "source": "crunchbase_odm",
+      "status": "success",
+      "fetched_at": "2026-04-23T15:05:46.404037+00:00"
+    },
+    {
+      "source": "layoffs_fyi",
+      "status": "success",
+      "fetched_at": "2026-04-23T15:05:46.404960+00:00"
+    },
+    {
+      "source": "remoteok_jobs",
+      "status": "no_data",
+      "fetched_at": "2026-04-23T15:05:46.634328+00:00"
+    },
+    {
+      "source": "crunchbase_people",
+      "status": "partial",
+      "fetched_at": "2026-04-23T15:05:46.634372+00:00"
+    }
+  ],
+  "honesty_flags": [
+    "weak_hiring_velocity_signal"
+  ]
+}

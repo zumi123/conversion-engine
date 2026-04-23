@@ -1,0 +1,60 @@
+{
+  "prospect": {
+    "company": "ModelHub",
+    "email": "founder@modelhub.ai",
+    "name": "Zara Ali",
+    "domain": "modelhub.ai"
+  },
+  "started_at": "2026-04-23T15:06:29.128865",
+  "steps": {
+    "enrichment": {
+      "status": "success",
+      "segment": "segment_4_specialized_capability",
+      "confidence": 0.7,
+      "ai_maturity": 3,
+      "honesty_flags": [
+        "weak_hiring_velocity_signal"
+      ],
+      "latency_seconds": 0.15,
+      "completed_at": "2026-04-23T15:06:29.278365"
+    },
+    "email_composition": {
+      "status": "success",
+      "subject": "Question: ML capability gap",
+      "word_count": 77,
+      "tone_score": 5,
+      "tone_violations": [],
+      "segment": "segment_4_specialized_capability",
+      "latency_seconds": 0.0,
+      "completed_at": "2026-04-23T15:06:29.279587"
+    },
+    "hubspot": {
+      "status": "success",
+      "contact_id": "763410532579",
+      "latency_seconds": 2.96,
+      "completed_at": "2026-04-23T15:06:32.244546"
+    },
+    "email_sent": {
+      "status": "dry_run",
+      "to": "founder@modelhub.ai",
+      "subject": "Question: ML capability gap",
+      "dry_run": true,
+      "latency_seconds": 0.0,
+      "completed_at": "2026-04-23T15:06:32.246705"
+    },
+    "booking": {
+      "status": "skipped",
+      "reason": "Low confidence: 70%"
+    }
+  },
+  "status": "completed",
+  "latency": {
+    "enrichment": 0.15,
+    "email_composition": 0.0,
+    "hubspot": 2.96,
+    "email_send": 0.0,
+    "total": 3.12
+  },
+  "completed_at": "2026-04-23T15:06:32.247519",
+  "langfuse_trace_id": "ff3b779a36c83c3d7500e085d6af9475"
+}

@@ -1,0 +1,61 @@
+{
+  "prospect": {
+    "company": "TechVentures",
+    "email": "ceo@techventures.io",
+    "name": "Nina Patel",
+    "domain": "techventures.io"
+  },
+  "started_at": "2026-04-23T15:06:22.525098",
+  "steps": {
+    "enrichment": {
+      "status": "success",
+      "segment": "segment_4_specialized_capability",
+      "confidence": 0.7,
+      "ai_maturity": 3,
+      "honesty_flags": [
+        "weak_hiring_velocity_signal",
+        "weak_ai_maturity_signal"
+      ],
+      "latency_seconds": 0.2,
+      "completed_at": "2026-04-23T15:06:22.729041"
+    },
+    "email_composition": {
+      "status": "success",
+      "subject": "Question: ML capability gap",
+      "word_count": 77,
+      "tone_score": 5,
+      "tone_violations": [],
+      "segment": "segment_4_specialized_capability",
+      "latency_seconds": 0.0,
+      "completed_at": "2026-04-23T15:06:22.730035"
+    },
+    "hubspot": {
+      "status": "success",
+      "contact_id": "763415959773",
+      "latency_seconds": 2.92,
+      "completed_at": "2026-04-23T15:06:25.651233"
+    },
+    "email_sent": {
+      "status": "dry_run",
+      "to": "ceo@techventures.io",
+      "subject": "Question: ML capability gap",
+      "dry_run": true,
+      "latency_seconds": 0.0,
+      "completed_at": "2026-04-23T15:06:25.653248"
+    },
+    "booking": {
+      "status": "skipped",
+      "reason": "Low confidence: 70%"
+    }
+  },
+  "status": "completed",
+  "latency": {
+    "enrichment": 0.2,
+    "email_composition": 0.0,
+    "hubspot": 2.92,
+    "email_send": 0.0,
+    "total": 3.13
+  },
+  "completed_at": "2026-04-23T15:06:25.654074",
+  "langfuse_trace_id": "bd1274d6085cbcd52d61e37b9ffe370f"
+}

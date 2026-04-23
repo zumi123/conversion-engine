@@ -1,0 +1,26 @@
+{
+  "prospect_name": "BuildFast",
+  "prospect_sector": "General SaaS",
+  "prospect_ai_maturity": 0,
+  "top_quartile_benchmark": 2,
+  "sector_median": 1,
+  "gap_score": 2,
+  "computed_gap_finding": "BuildFast AI maturity score is 0/3 vs sector top-quartile benchmark of 2/3 \u2014 a gap of 2 point(s)",
+  "top_quartile_practices_not_observed": [
+    {
+      "practice": "Dedicated AI/ML Leadership",
+      "public_signal": "Top quartile companies in General SaaS have named Head of AI or VP Data \u2014 no equivalent found for BuildFast"
+    },
+    {
+      "practice": "MLOps Infrastructure",
+      "public_signal": "Competitors in General SaaS show public signal of MLOps tooling (MLflow, W&B) \u2014 not detected for BuildFast"
+    },
+    {
+      "practice": "AI-Adjacent Engineering Roles",
+      "public_signal": "Top quartile companies post ML Engineer and Data Platform Engineer roles \u2014 none found for BuildFast"
+    }
+  ],
+  "suggested_pitch_shift": "Shift pitch to: 'Stand up your first dedicated AI function with a squad that deploys in 10 days'",
+  "generated_at": "2026-04-23T15:22:23.135910",
+  "honesty_note": "Gap analysis based on public signal only. Absence of signal does not confirm absence of capability \u2014 prospect may have private AI work not publicly visible."
+}

@@ -1,0 +1,60 @@
+{
+  "prospect": {
+    "company": "MLOps Co",
+    "email": "founder@mlops.co",
+    "name": "Priya Patel",
+    "domain": "mlops.co"
+  },
+  "started_at": "2026-04-23T15:05:52.515876",
+  "steps": {
+    "enrichment": {
+      "status": "success",
+      "segment": "segment_4_specialized_capability",
+      "confidence": 0.7,
+      "ai_maturity": 3,
+      "honesty_flags": [
+        "weak_hiring_velocity_signal"
+      ],
+      "latency_seconds": 0.16,
+      "completed_at": "2026-04-23T15:05:52.678509"
+    },
+    "email_composition": {
+      "status": "success",
+      "subject": "Question: ML capability gap",
+      "word_count": 78,
+      "tone_score": 5,
+      "tone_violations": [],
+      "segment": "segment_4_specialized_capability",
+      "latency_seconds": 0.0,
+      "completed_at": "2026-04-23T15:05:52.679756"
+    },
+    "hubspot": {
+      "status": "success",
+      "contact_id": "763379795151",
+      "latency_seconds": 3.03,
+      "completed_at": "2026-04-23T15:05:55.709976"
+    },
+    "email_sent": {
+      "status": "dry_run",
+      "to": "founder@mlops.co",
+      "subject": "Question: ML capability gap",
+      "dry_run": true,
+      "latency_seconds": 0.0,
+      "completed_at": "2026-04-23T15:05:55.711979"
+    },
+    "booking": {
+      "status": "skipped",
+      "reason": "Low confidence: 70%"
+    }
+  },
+  "status": "completed",
+  "latency": {
+    "enrichment": 0.16,
+    "email_composition": 0.0,
+    "hubspot": 3.03,
+    "email_send": 0.0,
+    "total": 3.2
+  },
+  "completed_at": "2026-04-23T15:05:55.712787",
+  "langfuse_trace_id": "b27310fd20d7630573c1bb8e1517dbd9"
+}

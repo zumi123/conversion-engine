@@ -1,0 +1,60 @@
+{
+  "prospect": {
+    "company": "AIStartup Labs",
+    "email": "ceo@aistartup.ai",
+    "name": "Maya Johnson",
+    "domain": "aistartup.ai"
+  },
+  "started_at": "2026-04-23T15:06:00.104367",
+  "steps": {
+    "enrichment": {
+      "status": "success",
+      "segment": "segment_4_specialized_capability",
+      "confidence": 0.7,
+      "ai_maturity": 3,
+      "honesty_flags": [
+        "weak_hiring_velocity_signal"
+      ],
+      "latency_seconds": 0.17,
+      "completed_at": "2026-04-23T15:06:00.269993"
+    },
+    "email_composition": {
+      "status": "success",
+      "subject": "Question: ML capability gap",
+      "word_count": 78,
+      "tone_score": 5,
+      "tone_violations": [],
+      "segment": "segment_4_specialized_capability",
+      "latency_seconds": 0.0,
+      "completed_at": "2026-04-23T15:06:00.271153"
+    },
+    "hubspot": {
+      "status": "success",
+      "contact_id": "763397702904",
+      "latency_seconds": 4.22,
+      "completed_at": "2026-04-23T15:06:04.491272"
+    },
+    "email_sent": {
+      "status": "dry_run",
+      "to": "ceo@aistartup.ai",
+      "subject": "Question: ML capability gap",
+      "dry_run": true,
+      "latency_seconds": 0.0,
+      "completed_at": "2026-04-23T15:06:04.493276"
+    },
+    "booking": {
+      "status": "skipped",
+      "reason": "Low confidence: 70%"
+    }
+  },
+  "status": "completed",
+  "latency": {
+    "enrichment": 0.17,
+    "email_composition": 0.0,
+    "hubspot": 4.22,
+    "email_send": 0.0,
+    "total": 4.39
+  },
+  "completed_at": "2026-04-23T15:06:04.494112",
+  "langfuse_trace_id": "593a65e89429d7d20567328505773690"
+}

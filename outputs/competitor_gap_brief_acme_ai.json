@@ -1,0 +1,13 @@
+{
+  "prospect_name": "Acme AI",
+  "prospect_sector": "AI/ML SaaS",
+  "prospect_ai_maturity": 3,
+  "top_quartile_benchmark": 3,
+  "sector_median": 2,
+  "gap_score": 0,
+  "computed_gap_finding": "Acme AI is at or above the sector top-quartile benchmark",
+  "top_quartile_practices_not_observed": [],
+  "suggested_pitch_shift": "Prospect is at top-quartile level. Focus on scaling what they already have.",
+  "generated_at": "2026-04-23T15:20:46.945195",
+  "honesty_note": "Gap analysis based on public signal only. Absence of signal does not confirm absence of capability \u2014 prospect may have private AI work not publicly visible."
+}

@@ -1,0 +1,60 @@
+{
+  "prospect": {
+    "company": "DataFlow Inc",
+    "email": "cto@dataflow.io",
+    "name": "Sarah Chen",
+    "domain": "dataflow.io"
+  },
+  "started_at": "2026-04-23T15:05:46.355221",
+  "steps": {
+    "enrichment": {
+      "status": "success",
+      "segment": "segment_4_specialized_capability",
+      "confidence": 0.7,
+      "ai_maturity": 3,
+      "honesty_flags": [
+        "weak_hiring_velocity_signal"
+      ],
+      "latency_seconds": 0.28,
+      "completed_at": "2026-04-23T15:05:46.635183"
+    },
+    "email_composition": {
+      "status": "success",
+      "subject": "Question: ML capability gap",
+      "word_count": 78,
+      "tone_score": 5,
+      "tone_violations": [],
+      "segment": "segment_4_specialized_capability",
+      "latency_seconds": 0.0,
+      "completed_at": "2026-04-23T15:05:46.636645"
+    },
+    "hubspot": {
+      "status": "success",
+      "contact_id": "763341540568",
+      "latency_seconds": 2.36,
+      "completed_at": "2026-04-23T15:05:49.001429"
+    },
+    "email_sent": {
+      "status": "dry_run",
+      "to": "cto@dataflow.io",
+      "subject": "Question: ML capability gap",
+      "dry_run": true,
+      "latency_seconds": 0.0,
+      "completed_at": "2026-04-23T15:05:49.003127"
+    },
+    "booking": {
+      "status": "skipped",
+      "reason": "Low confidence: 70%"
+    }
+  },
+  "status": "completed",
+  "latency": {
+    "enrichment": 0.28,
+    "email_composition": 0.0,
+    "hubspot": 2.36,
+    "email_send": 0.0,
+    "total": 2.65
+  },
+  "completed_at": "2026-04-23T15:05:49.005201",
+  "langfuse_trace_id": "973e18640b84a40efb5fc022e7686982"
+}

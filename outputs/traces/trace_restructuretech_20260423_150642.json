@@ -1,0 +1,61 @@
+{
+  "prospect": {
+    "company": "RestructureTech",
+    "email": "cfo@restructuretech.com",
+    "name": "Mark Davis",
+    "domain": "restructuretech.com"
+  },
+  "started_at": "2026-04-23T15:06:39.594987",
+  "steps": {
+    "enrichment": {
+      "status": "success",
+      "segment": "abstain",
+      "confidence": 0.4,
+      "ai_maturity": 1,
+      "honesty_flags": [
+        "weak_hiring_velocity_signal",
+        "weak_ai_maturity_signal"
+      ],
+      "latency_seconds": 0.16,
+      "completed_at": "2026-04-23T15:06:39.755665"
+    },
+    "email_composition": {
+      "status": "success",
+      "subject": "Question: Engineering capacity at your stage",
+      "word_count": 50,
+      "tone_score": 5,
+      "tone_violations": [],
+      "segment": "abstain",
+      "latency_seconds": 0.0,
+      "completed_at": "2026-04-23T15:06:39.756739"
+    },
+    "hubspot": {
+      "status": "success",
+      "contact_id": "763374467307",
+      "latency_seconds": 2.97,
+      "completed_at": "2026-04-23T15:06:42.728091"
+    },
+    "email_sent": {
+      "status": "dry_run",
+      "to": "cfo@restructuretech.com",
+      "subject": "Question: Engineering capacity at your stage",
+      "dry_run": true,
+      "latency_seconds": 0.0,
+      "completed_at": "2026-04-23T15:06:42.730092"
+    },
+    "booking": {
+      "status": "skipped",
+      "reason": "Low confidence: 40%"
+    }
+  },
+  "status": "completed",
+  "latency": {
+    "enrichment": 0.16,
+    "email_composition": 0.0,
+    "hubspot": 2.97,
+    "email_send": 0.0,
+    "total": 3.14
+  },
+  "completed_at": "2026-04-23T15:06:42.730898",
+  "langfuse_trace_id": "19894174c0e802dbb1fb364d8e396219"
+}

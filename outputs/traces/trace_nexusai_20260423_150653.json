@@ -1,0 +1,60 @@
+{
+  "prospect": {
+    "company": "NexusAI",
+    "email": "founder@nexusai.io",
+    "name": "Aisha Mohammed",
+    "domain": "nexusai.io"
+  },
+  "started_at": "2026-04-23T15:06:49.871130",
+  "steps": {
+    "enrichment": {
+      "status": "success",
+      "segment": "segment_4_specialized_capability",
+      "confidence": 0.7,
+      "ai_maturity": 3,
+      "honesty_flags": [
+        "weak_hiring_velocity_signal"
+      ],
+      "latency_seconds": 0.16,
+      "completed_at": "2026-04-23T15:06:50.029021"
+    },
+    "email_composition": {
+      "status": "success",
+      "subject": "Question: ML capability gap",
+      "word_count": 77,
+      "tone_score": 5,
+      "tone_violations": [],
+      "segment": "segment_4_specialized_capability",
+      "latency_seconds": 0.0,
+      "completed_at": "2026-04-23T15:06:50.030375"
+    },
+    "hubspot": {
+      "status": "success",
+      "contact_id": "763378018506",
+      "latency_seconds": 3.6,
+      "completed_at": "2026-04-23T15:06:53.629349"
+    },
+    "email_sent": {
+      "status": "dry_run",
+      "to": "founder@nexusai.io",
+      "subject": "Question: ML capability gap",
+      "dry_run": true,
+      "latency_seconds": 0.0,
+      "completed_at": "2026-04-23T15:06:53.631419"
+    },
+    "booking": {
+      "status": "skipped",
+      "reason": "Low confidence: 70%"
+    }
+  },
+  "status": "completed",
+  "latency": {
+    "enrichment": 0.16,
+    "email_composition": 0.0,
+    "hubspot": 3.6,
+    "email_send": 0.0,
+    "total": 3.76
+  },
+  "completed_at": "2026-04-23T15:06:53.632227",
+  "langfuse_trace_id": "119e73f98b6b80adc89885b8fd3919b5"
+}

@@ -1,0 +1,36 @@
+{
+  "act": "II",
+  "date": "2026-04-23",
+  "total_prospects": 20,
+  "latency": {
+    "p50_seconds": 3.52,
+    "p95_seconds": 4.54,
+    "min_seconds": 2.60,
+    "max_seconds": 4.54,
+    "unit": "seconds"
+  },
+  "vs_human_baseline": {
+    "human_p50_minutes": 42,
+    "agent_p50_seconds": 3.52,
+    "speedup_factor": 715,
+    "note": "Agent responds 715x faster than human median"
+  },
+  "quality": {
+    "average_tone_score": 5.0,
+    "tone_violations": 0,
+    "abstain_rate": 0.45,
+    "segment_distribution": {
+      "segment_4_specialized_capability": 11,
+      "abstain": 9
+    }
+  },
+  "integrations": {
+    "resend_email": "configured",
+    "africa_talking_sms": "configured",
+    "hubspot_crm": "live",
+    "calcom_calendar": "live",
+    "langfuse_tracing": "live"
+  },
+  "cost_per_interaction": 0.0,
+  "notes": "All flows rule-based — no LLM cost at this stage"
+}

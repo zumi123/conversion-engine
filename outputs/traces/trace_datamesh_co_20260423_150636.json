@@ -1,0 +1,60 @@
+{
+  "prospect": {
+    "company": "DataMesh Co",
+    "email": "cto@datamesh.co",
+    "name": "Frank Miller",
+    "domain": "datamesh.co"
+  },
+  "started_at": "2026-04-23T15:06:32.397364",
+  "steps": {
+    "enrichment": {
+      "status": "success",
+      "segment": "segment_4_specialized_capability",
+      "confidence": 0.7,
+      "ai_maturity": 3,
+      "honesty_flags": [
+        "weak_hiring_velocity_signal"
+      ],
+      "latency_seconds": 0.15,
+      "completed_at": "2026-04-23T15:06:32.550210"
+    },
+    "email_composition": {
+      "status": "success",
+      "subject": "Question: ML capability gap",
+      "word_count": 78,
+      "tone_score": 5,
+      "tone_violations": [],
+      "segment": "segment_4_specialized_capability",
+      "latency_seconds": 0.0,
+      "completed_at": "2026-04-23T15:06:32.551217"
+    },
+    "hubspot": {
+      "status": "success",
+      "contact_id": "763334389994",
+      "latency_seconds": 3.37,
+      "completed_at": "2026-04-23T15:06:35.917036"
+    },
+    "email_sent": {
+      "status": "dry_run",
+      "to": "cto@datamesh.co",
+      "subject": "Question: ML capability gap",
+      "dry_run": true,
+      "latency_seconds": 0.0,
+      "completed_at": "2026-04-23T15:06:35.919110"
+    },
+    "booking": {
+      "status": "skipped",
+      "reason": "Low confidence: 70%"
+    }
+  },
+  "status": "completed",
+  "latency": {
+    "enrichment": 0.15,
+    "email_composition": 0.0,
+    "hubspot": 3.37,
+    "email_send": 0.0,
+    "total": 3.52
+  },
+  "completed_at": "2026-04-23T15:06:35.919903",
+  "langfuse_trace_id": "15ec6214a0c80c09473c4de476e42650"
+}

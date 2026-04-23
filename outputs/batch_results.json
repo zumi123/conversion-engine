@@ -1,0 +1,174 @@
+{
+  "total_prospects": 20,
+  "p50_latency": 3.515702486038208,
+  "p95_latency": 4.537974834442139,
+  "min_latency": 2.5998215675354004,
+  "max_latency": 4.537974834442139,
+  "segment_distribution": {
+    "segment_4_specialized_capability": 11,
+    "abstain": 9
+  },
+  "average_tone_score": 5.0,
+  "results": [
+    {
+      "company": "DataFlow Inc",
+      "segment": "segment_4_specialized_capability",
+      "tone_score": 5,
+      "hubspot_status": "success",
+      "latency_seconds": 3.56,
+      "status": "completed"
+    },
+    {
+      "company": "CloudScale",
+      "segment": "abstain",
+      "tone_score": 5,
+      "hubspot_status": "success",
+      "latency_seconds": 2.6,
+      "status": "completed"
+    },
+    {
+      "company": "MLOps Co",
+      "segment": "segment_4_specialized_capability",
+      "tone_score": 5,
+      "hubspot_status": "success",
+      "latency_seconds": 4.0,
+      "status": "completed"
+    },
+    {
+      "company": "FintechRapid",
+      "segment": "abstain",
+      "tone_score": 5,
+      "hubspot_status": "success",
+      "latency_seconds": 3.59,
+      "status": "completed"
+    },
+    {
+      "company": "AIStartup Labs",
+      "segment": "segment_4_specialized_capability",
+      "tone_score": 5,
+      "hubspot_status": "success",
+      "latency_seconds": 4.54,
+      "status": "completed"
+    },
+    {
+      "company": "DevOps Pro",
+      "segment": "abstain",
+      "tone_score": 5,
+      "hubspot_status": "success",
+      "latency_seconds": 3.3,
+      "status": "completed"
+    },
+    {
+      "company": "DataBridge",
+      "segment": "segment_4_specialized_capability",
+      "tone_score": 5,
+      "hubspot_status": "success",
+      "latency_seconds": 3.95,
+      "status": "completed"
+    },
+    {
+      "company": "ScaleAI Corp",
+      "segment": "segment_4_specialized_capability",
+      "tone_score": 5,
+      "hubspot_status": "success",
+      "latency_seconds": 3.86,
+      "status": "completed"
+    },
+    {
+      "company": "CloudNative Inc",
+      "segment": "abstain",
+      "tone_score": 5,
+      "hubspot_status": "success",
+      "latency_seconds": 3.14,
+      "status": "completed"
+    },
+    {
+      "company": "PlatformX",
+      "segment": "abstain",
+      "tone_score": 5,
+      "hubspot_status": "success",
+      "latency_seconds": 3.64,
+      "status": "completed"
+    },
+    {
+      "company": "TechVentures",
+      "segment": "segment_4_specialized_capability",
+      "tone_score": 5,
+      "hubspot_status": "success",
+      "latency_seconds": 3.28,
+      "status": "completed"
+    },
+    {
+      "company": "Inframatic",
+      "segment": "abstain",
+      "tone_score": 5,
+      "hubspot_status": "success",
+      "latency_seconds": 3.33,
+      "status": "completed"
+    },
+    {
+      "company": "ModelHub",
+      "segment": "segment_4_specialized_capability",
+      "tone_score": 5,
+      "hubspot_status": "success",
+      "latency_seconds": 3.27,
+      "status": "completed"
+    },
+    {
+      "company": "DataMesh Co",
+      "segment": "segment_4_specialized_capability",
+      "tone_score": 5,
+      "hubspot_status": "success",
+      "latency_seconds": 3.68,
+      "status": "completed"
+    },
+    {
+      "company": "BuildFast",
+      "segment": "abstain",
+      "tone_score": 5,
+      "hubspot_status": "success",
+      "latency_seconds": 3.52,
+      "status": "completed"
+    },
+    {
+      "company": "RestructureTech",
+      "segment": "abstain",
+      "tone_score": 5,
+      "hubspot_status": "success",
+      "latency_seconds": 3.32,
+      "status": "completed"
+    },
+    {
+      "company": "AgentFlow",
+      "segment": "segment_4_specialized_capability",
+      "tone_score": 5,
+      "hubspot_status": "success",
+      "latency_seconds": 3.51,
+      "status": "completed"
+    },
+    {
+      "company": "StreamData",
+      "segment": "abstain",
+      "tone_score": 5,
+      "hubspot_status": "success",
+      "latency_seconds": 3.44,
+      "status": "completed"
+    },
+    {
+      "company": "NexusAI",
+      "segment": "segment_4_specialized_capability",
+      "tone_score": 5,
+      "hubspot_status": "success",
+      "latency_seconds": 3.91,
+      "status": "completed"
+    },
+    {
+      "company": "PipelineIO",
+      "segment": "segment_4_specialized_capability",
+      "tone_score": 5,
+      "hubspot_status": "success",
+      "latency_seconds": 3.51,
+      "status": "completed"
+    }
+  ]
+}

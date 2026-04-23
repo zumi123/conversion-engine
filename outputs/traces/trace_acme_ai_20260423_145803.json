@@ -1,0 +1,48 @@
+{
+  "prospect": {
+    "company": "Acme AI",
+    "email": "alex.chen@acme-ai.com",
+    "name": "Alex Chen",
+    "domain": "acme-ai.com"
+  },
+  "started_at": "2026-04-23T14:57:59.200960",
+  "steps": {
+    "enrichment": {
+      "status": "success",
+      "segment": "segment_4_specialized_capability",
+      "confidence": 0.7,
+      "ai_maturity": 3,
+      "honesty_flags": [
+        "weak_hiring_velocity_signal"
+      ],
+      "completed_at": "2026-04-23T14:57:59.455789"
+    },
+    "email_composition": {
+      "status": "success",
+      "subject": "Question: ML capability gap",
+      "word_count": 78,
+      "tone_score": 5,
+      "tone_violations": [],
+      "segment": "segment_4_specialized_capability",
+      "completed_at": "2026-04-23T14:57:59.455941"
+    },
+    "hubspot": {
+      "status": "success",
+      "contact_id": "763352609989",
+      "completed_at": "2026-04-23T14:58:03.194533"
+    },
+    "email_sent": {
+      "status": "dry_run",
+      "to": "alex.chen@acme-ai.com",
+      "subject": "Question: ML capability gap",
+      "dry_run": true,
+      "completed_at": "2026-04-23T14:58:03.195439"
+    },
+    "booking": {
+      "status": "skipped",
+      "reason": "Low confidence: 70%"
+    }
+  },
+  "status": "completed",
+  "completed_at": "2026-04-23T14:58:03.195508"
+}
