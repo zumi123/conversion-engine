@@ -1,9 +1,28 @@
 # Conversion Engine
 ### Automated Lead Generation and Conversion System for Tenacious Consulting and Outsourcing
 
-**Challenge:** Week 10 — The Conversion Engine
-**Submission:** Interim (Acts I and II)
-**Date:** April 23, 2026
+**Challenge:** Week 10 — The Conversion Engine  
+**Submission:** Final (Acts I–V)  
+**Date:** April 25, 2026
+
+---
+
+## ⚠️ Kill Switch — Read This First
+
+```bash
+# In .env — DEFAULT IS ALWAYS DRY RUN
+DRY_RUN=true   # All outbound routes to staff sink (default — must be set)
+DRY_RUN=false  # Live mode — only after explicit Tenacious staff approval
+```
+
+**Before any run, verify:**
+```bash
+grep DRY_RUN .env
+```
+
+If `DRY_RUN` is not explicitly set to `false`, the system routes all outbound to the staff sink. This is not optional. Do not remove this check.
+
+**Automatic kill-switch trigger:** If wrong-signal complaint rate exceeds 2 per 100 emails in any rolling 7-day window, set `DRY_RUN=true` immediately and audit before re-enabling. See `memo.pdf` Page 2 for full kill-switch clause.
 
 ---
 
@@ -13,6 +32,12 @@ The Conversion Engine finds companies that match Tenacious's ideal customer prof
 
 The core insight: **qualification is the filter, research is the value proposition.** Every email the system sends arrives with a specific, verifiable finding about the prospect — not a generic pitch.
 
+Key metrics from 20-prospect batch run:
+- **p50 latency:** 3.52s (vs 42 minutes human baseline — 715x faster)
+- **Tone score:** 5/5 across all 20 prospects, zero violations
+- **Abstain rate:** 45% (9/20) — correct abstentions, not failures
+- **Cost per lead:** <$0.01 (rule-based email composition, no LLM per message)
+
 ---
 
 ## Architecture
@@ -20,26 +45,27 @@ The core insight: **qualification is the filter, research is the value propositi
 ```
 ┌─────────────────────────────────────────────────────┐
 │                  DATA SOURCES                       │
-│  Crunchbase ODM (1000 companies)                    │
-│  RemoteOK Job Posts (Playwright + API)              │
-│  layoffs.fyi CSV                                    │
-│  Leadership change detection                        │
+│  Crunchbase ODM (1,000 companies, Apache 2.0)       │
+│  RemoteOK Job Posts (Playwright + public API)       │
+│  layoffs.fyi CSV (CC-BY)                            │
+│  Google News RSS (leadership change detection)      │
 └──────────────────────┬──────────────────────────────┘
-                       │
+                       │  public signals
                        ▼
 ┌─────────────────────────────────────────────────────┐
 │              ENRICHMENT PIPELINE                    │
-│  enrichment/crunchbase.py   → firmographics         │
-│  enrichment/job_posts.py    → hiring velocity       │
-│  enrichment/layoffs.py      → cost pressure signal  │
-│  enrichment/ai_maturity.py  → AI maturity (0-3)     │
-│  enrichment/competitor_gap.py → top-quartile gap    │
-│  enrichment/pipeline.py     → orchestrates all      │
+│  enrichment/crunchbase.py   -> firmographics        │
+│  enrichment/job_posts.py    -> hiring velocity      │
+│  enrichment/layoffs.py      -> cost pressure signal │
+│  enrichment/leadership.py   -> CTO/VP Eng changes   │
+│  enrichment/ai_maturity.py  -> AI maturity (0-3)    │
+│  enrichment/competitor_gap.py -> top-quartile gap   │
+│  enrichment/pipeline.py     -> orchestrates all     │
 │                                                     │
 │  Output: hiring_signal_brief.json                   │
 │          competitor_gap_brief.json                  │
 └──────────────────────┬──────────────────────────────┘
-                       │
+                       │  structured brief + confidence scores
                        ▼
 ┌─────────────────────────────────────────────────────┐
 │              ICP CLASSIFIER                         │
@@ -49,46 +75,47 @@ The core insight: **qualification is the filter, research is the value propositi
 │  Segment 4: Specialized capability gap              │
 │  Abstain:   confidence < 0.6                        │
 └──────────────────────┬──────────────────────────────┘
-                       │
+                       │  segment + confidence
                        ▼
 ┌─────────────────────────────────────────────────────┐
 │               EMAIL AGENT                           │
 │  agent/email_handler.py                             │
-│  <- seeds/seed/style_guide.md (5 tone markers)     │
+│  <- seeds/seed/style_guide.md  (5 tone markers)    │
 │  <- seeds/seed/bench_summary.json (capacity gate)  │
 │  <- seeds/seed/icp_definition.md (segment rules)   │
 │                                                     │
-│  Tone check: Direct, Grounded, Honest,              │
-│              Professional, Non-condescending        │
-└──────────────────────┬──────────────────────────────┘
-                       │
-                       ▼
-┌──────────────┬────────────────┬─────────────────────┐
-│   CHANNEL 1  │   CHANNEL 2    │   CHANNEL 3         │
-│   (Primary)  │   (Secondary)  │   (Final)           │
-│              │                │                     │
-│   Resend     │  Africa's      │   Cal.com           │
-│   Email      │  Talking SMS   │   Discovery Call    │
-│              │  (warm leads   │   (booked by agent  │
-│              │   only - gated │   delivered by      │
-│              │   on email     │   human lead)       │
-│              │   reply)       │                     │
-└──────┬───────┴────────────────┴──────────┬──────────┘
-       │                                   │
-       ▼                                   ▼
-┌─────────────────────────────────────────────────────┐
-│                   HUBSPOT CRM                       │
-│  Write 1: Contact + ICP segment + enrichment data   │
-│  Write 2: Booking reference (after Cal.com books)   │
-└──────────────────────┬──────────────────────────────┘
-                       │
-                       ▼
-┌─────────────────────────────────────────────────────┐
-│                   LANGFUSE                          │
-│  Per-step latency tracking                          │
-│  Cost attribution                                   │
-│  Full trace logging with trace IDs                  │
-└─────────────────────────────────────────────────────┘
+│  Rule-based composition — no LLM per email         │
+│  Tone check: Direct · Grounded · Honest ·           │
+│              Professional · Non-condescending       │
+└──────────┬──────────────┬────────────────┬──────────┘
+           │              │                │
+           ▼              ▼                ▼
+    ┌──────────┐  ┌──────────────┐  ┌───────────────┐
+    │CHANNEL 1 │  │  CHANNEL 2   │  │   CHANNEL 3   │
+    │(Primary) │  │ (Secondary)  │  │    (Final)    │
+    │  Resend  │  │  Africa's    │  │   Cal.com     │
+    │  Email   │  │  Talking SMS │  │  Discovery    │
+    │          │  │ (warm leads  │  │     Call      │
+    │          │  │  only —      │  │ (agent books, │
+    │          │  │  gated on    │  │  human closes)│
+    │          │  │  email reply)│  │               │
+    └──────────┘  └──────────────┘  └───────────────┘
+                         │
+                         ▼
+           ┌─────────────────────────┐
+           │      HUBSPOT CRM        │
+           │  Write 1: enrichment +  │
+           │  ICP segment at outreach│
+           │  Write 2: booking ref   │
+           │  after Cal.com confirms │
+           └─────────────────────────┘
+                         │
+                         ▼
+           ┌─────────────────────────┐
+           │       LANGFUSE          │
+           │  Per-step tracing       │
+           │  Latency + cost logging │
+           └─────────────────────────┘
 ```
 
 ---
@@ -97,45 +124,41 @@ The core insight: **qualification is the filter, research is the value propositi
 
 ```
 conversion-engine/
-│
 ├── agent/
-│   ├── __init__.py
-│   ├── email_handler.py       # Resend integration, tone check,
-│   │                          # downstream reply handler
-│   ├── orchestrator.py        # End-to-end flow orchestrator
-│   │                          # with Langfuse tracing
-│   └── sms_handler.py         # Africa's Talking integration
-│                              # Channel hierarchy enforcement
+│   ├── email_handler.py       # Rule-based composer, 5-marker tone check
+│   ├── orchestrator.py        # End-to-end flow with Langfuse tracing
+│   └── sms_handler.py         # Africa's Talking — channel hierarchy gate
 │
 ├── enrichment/
-│   ├── __init__.py
-│   ├── ai_maturity.py         # AI maturity scoring (0-3)
-│   │                          # 6-signal rubric with confidence
-│   ├── competitor_gap.py      # Top-quartile gap analysis
+│   ├── ai_maturity.py         # AI maturity scoring (0-3), 6-signal rubric
+│   ├── competitor_gap.py      # Top-quartile gap analysis by sector
 │   ├── crunchbase.py          # Crunchbase ODM firmographic lookup
-│   ├── job_posts.py           # Playwright + RemoteOK job scraping
-│   │                          # No login logic anywhere
-│   ├── layoffs.py             # layoffs.fyi CSV parser
-│   └── pipeline.py            # Main enrichment orchestrator
-│                              # produces hiring_signal_brief.json
+│   ├── job_posts.py           # RemoteOK API + Playwright careers scraper
+│   ├── layoffs.py             # layoffs.fyi CSV parser (CC-BY dataset)
+│   ├── leadership.py          # CTO/VP Eng change detection (3 sources)
+│   └── pipeline.py            # Orchestrator -> hiring_signal_brief.json
 │
 ├── integrations/
-│   ├── __init__.py
 │   ├── cal_com.py             # Cal.com v2 API booking
-│   └── hubspot.py             # HubSpot CRM (two writes per prospect)
+│   └── hubspot.py             # HubSpot CRM — two writes per prospect
 │
 ├── eval/
-│   ├── baseline.md            # Official facilitator baseline
-│   ├── baseline_self_run.md   # Self-run reference (Qwen3 free tier)
+│   ├── baseline.md            # Official facilitator baseline (do not edit)
 │   ├── score_log.json         # Official facilitator score log
-│   ├── score_log_self_run.json# Self-run score log
-│   ├── trace_log.jsonl        # Official facilitator traces (159 sims)
-│   ├── trace_log_self_run.jsonl # Self-run traces
-│   └── act2_metrics.json      # Act II latency and quality metrics
+│   ├── trace_log.jsonl        # Official facilitator traces (150 sims)
+│   ├── act2_metrics.json      # Act II latency and quality metrics
+│   └── act4/
+│       ├── method.md              # Mechanism design + ablation analysis
+│       ├── ablation_results.json  # All 4 conditions with stats
+│       ├── held_out_traces.jsonl  # Raw traces from all 3 variants
+│       ├── variant_a_results.json # 10 strict rules (pass@1: 0.467)
+│       ├── variant_b_results.json # 4 light reminders (pass@1: 0.600)
+│       └── variant_c_results.json # Original prompt (pass@1: 0.600)
 │
 ├── data/
-│   ├── crunchbase_sample.csv  # 1000 company ODM sample (raw)
-│   ├── crunchbase_sample.json # 1000 company ODM sample (parsed)
+│   ├── crunchbase_sample.csv  # 1,000-company Crunchbase ODM (Apache 2.0)
+│   ├── crunchbase_sample.json # Parsed ODM sample
+│   ├── layoffs.csv            # layoffs.fyi export (CC-BY, 4,358 rows)
 │   └── job_posts_test.json    # Job post scrape snapshot
 │
 ├── outputs/
@@ -143,76 +166,70 @@ conversion-engine/
 │   ├── competitor_gap_brief_*.json  # Per-prospect gap analysis
 │   ├── batch_results.json           # 20-prospect batch run results
 │   └── traces/                      # Per-prospect flow traces
-│       └── trace_*.json
 │
-├── seeds/                     # Tenacious confidential materials
-│   └── (excluded from git - see seeds/README.md)
+├── probes/
+│   ├── probe_library.md        # 35 adversarial probes across 10 categories
+│   ├── failure_taxonomy.md     # Failure classes A-G with trigger rates
+│   ├── target_failure_mode.md  # Act IV target: confidence aggregation bugs
+│   └── real_company_probes.md  # 7 real-company probes (pre/post fix)
+│
+├── seeds/                     # Tenacious confidential materials (gitignored)
 │
 ├── tests/
-│   ├── test_end_to_end.py     # Single prospect full flow test
-│   ├── test_batch.py          # 20-prospect batch test
-│   ├── test_email_agent.py    # Email composition + tone check
-│   ├── test_email.py          # Resend send test
-│   ├── test_hubspot.py        # HubSpot contact creation test
-│   ├── test_hubspot_enrichment.py # HubSpot with brief test
-│   ├── test_calcom.py         # Cal.com booking test
-│   ├── test_langfuse.py       # Langfuse trace test
-│   └── test_sms.py            # Africa's Talking SMS test
+│   ├── test_end_to_end.py          # Single prospect full flow
+│   ├── test_batch.py               # 20-prospect batch
+│   ├── test_probes.py              # Adversarial probe runner
+│   └── test_probes_advanced.py     # Extended probe runner (7 probes)
 │
+├── memo.pdf                   # Act V — 2-page decision memo
+├── evidence_graph.json        # Act V — every number traced to source
 ├── main.py                    # FastAPI webhook server
-│                              # /webhooks/resend (email replies)
-│                              # /webhooks/sms (inbound SMS)
 ├── README.md
 ├── requirements.txt
-├── .env.example               # Environment variable template
+├── .env.example
 └── .gitignore
 ```
 
 ---
 
-## Setup Instructions
+## Setup
 
-### 1. Clone and create virtual environment
+### 1. Clone and install
+
 ```bash
 git clone https://github.com/YOUR_USERNAME/conversion-engine.git
 cd conversion-engine
 python -m venv venv
-source venv/bin/activate        # Mac/Linux
-venv\Scripts\activate           # Windows
+source venv/bin/activate
 pip install -r requirements.txt
-```
-
-### 2. Configure environment variables
-```bash
-cp .env.example .env
-nano .env
-# Fill in all required keys
-```
-
-### 3. Install Playwright browsers
-```bash
 playwright install chromium
 ```
 
-### 4. Add seed materials
+### 2. Configure environment
+
+```bash
+cp .env.example .env
+nano .env
+```
+
+### 3. Add seed materials
+
 Obtain from program staff and place in `seeds/seed/`:
 - `icp_definition.md`
 - `style_guide.md`
 - `bench_summary.json`
 - `pricing_sheet.md`
 - `baseline_numbers.md`
-- `email_sequences/`
-- `discovery_transcripts/`
+
+### 4. Download layoffs.fyi CSV
+
+Download CC-BY export and place at `data/layoffs.csv`. Required for Segment 2 classification.
 
 ### 5. Start the webhook server
+
 ```bash
 export PYTHONPATH=$PYTHONPATH:$(pwd)
 uvicorn main:app --port 8000
-```
-
-### 6. Start ngrok tunnel (local development)
-```bash
-ngrok http --domain=YOUR_DOMAIN.ngrok-free.dev 8000
 ```
 
 ---
@@ -243,160 +260,69 @@ LANGFUSE_PUBLIC_KEY=pk-lf-...
 LANGFUSE_SECRET_KEY=sk-lf-...
 LANGFUSE_HOST=https://cloud.langfuse.com
 
-# Kill switch - default must be true
+# Kill switch — default MUST be true
 DRY_RUN=true
 ```
 
 ---
 
-## Running the System
+## Results Summary
 
-### Single prospect end-to-end
-```bash
-export PYTHONPATH=$PYTHONPATH:$(pwd)
-python tests/test_end_to_end.py
-```
-
-### 20-prospect batch run
-```bash
-python tests/test_batch.py
-```
-
-### Enrichment pipeline only
-```bash
-python -m enrichment.pipeline
-```
-
-### tau2-Bench evaluation (1 trial per facilitator update)
-```bash
-cd ../tau2-bench
-uv run tau2 run \
-  --domain retail \
-  --agent-llm openrouter/qwen/qwen3-next-80b-a3b-thinking \
-  --user-llm openrouter/qwen/qwen3-next-80b-a3b-thinking \
-  --num-trials 1 \
-  --num-tasks 30
-```
-
----
-
-## Production Stack
-
-| Layer | Tool | Status |
-|---|---|---|
-| Email (primary) | Resend free tier | Live |
-| SMS (secondary, warm leads only) | Africa's Talking sandbox | Live |
-| CRM | HubSpot Developer Sandbox | Live |
-| Calendar | Cal.com Cloud (v2 API) | Live |
-| Observability | Langfuse cloud free tier | Live |
-| Evaluation | tau2-Bench retail domain | Live |
-| LLM dev tier | OpenRouter Qwen3 | Live |
-| LLM eval tier | Claude Sonnet 4.6 | Configured |
-| Enrichment | Playwright + requests | Live |
-
----
-
-## Act I Results — tau2-Bench Baseline
-
-Official baseline provided by program facilitators (April 23, 2026).
-Model: `openrouter/qwen/qwen3-next-80b-a3b-thinking`
+### Act I — tau2-Bench Baseline (facilitator-provided)
 
 | Metric | Value |
 |---|---|
-| Domain | Retail |
-| Tasks | 30 |
-| Trials | 5 |
-| Evaluated simulations | 150 |
-| Infra errors | 0 |
-| pass@1 | 0.7267 |
+| Model | openrouter/qwen/qwen3-next-80b-a3b-thinking |
+| Tasks / Trials | 30 / 5 (150 sims) |
+| **pass@1** | **0.7267** |
 | 95% CI | [0.6504, 0.7917] |
-| Avg agent cost | $0.0199 |
 | p50 latency | 105.95s |
-| p95 latency | 551.65s |
-| Git commit | d11a97072c49d093f7b5a3e4fe9da95b490d43ba |
 
-Self-run reference using free Qwen3-235b (dev tier):
-- pass@1: 0.268, 95% CI: [0.195, 0.341], cost: $0.00
+### Act II — Production Stack
 
----
+| Metric | Value | Source |
+|---|---|---|
+| p50 latency | **3.52s** | eval/act2_metrics.json |
+| Speedup vs human (42 min) | **715x** | Derived |
+| Speedup vs tau2-Bench p50 | **30x** | Derived |
+| Tone score (20 prospects) | **5.0 / 5** | outputs/batch_results.json |
+| Tone violations | **0** | outputs/batch_results.json |
+| Abstain rate | **45% (9/20)** | outputs/batch_results.json |
+| Cost per interaction | **$0.00** | Rule-based, no LLM per email |
 
-## Act II Results — Production Stack
+### Act IV — Ablation Results
 
-20 synthetic prospects processed end-to-end.
+| Condition | pass@1 | 95% CI |
+|---|---|---|
+| Facilitator baseline (5 trials) | 0.7267 | [0.6504, 0.7917] |
+| Variant C: original prompt (1 trial) | 0.600 | [0.4267, 0.7506] |
+| Variant B: 4 light reminders (1 trial) | 0.600 | [0.4267, 0.7506] |
+| Variant A: 10 strict rules (1 trial) | 0.467 | [0.2981, 0.6419] |
 
-| Metric | Value |
-|---|---|
-| Total prospects | 20 |
-| p50 latency | 3.52s |
-| p95 latency | 4.54s |
-| Min latency | 2.60s |
-| Max latency | 4.54s |
-| Average tone score | 5.0 / 5 |
-| Tone violations | 0 |
-| Abstain rate | 45% (9/20) |
-| Human baseline median | 42 minutes |
-| Speedup vs human | 715x |
-| Speedup vs tau2-Bench p50 | 30x |
-
-### Segment distribution (20 prospects)
-| Segment | Count |
-|---|---|
-| Segment 4 - specialized capability gap | 11 |
-| Abstain - low confidence | 9 |
+**Finding:** Instruction augmentation hurts thinking models. Variant A vs facilitator: z=-2.915, p=0.0018.
 
 ---
 
-## Key Design Decisions
+## Known Limitations
 
-**Rule-based email composition (no LLM cost)**
-Email composition uses deterministic rules from `hiring_signal_brief.json` and `icp_definition.md`. This eliminates LLM cost per email, ensures consistent tone, and makes the system fully auditable. The honesty constraint is structural — the composer cannot assert claims not present in the brief.
-
-**Confidence-gated segment classification**
-Prospects with segment confidence below 0.6 receive a generic exploratory email rather than a segment-specific pitch. This prevents the most damaging failure mode — sending the wrong pitch to the wrong segment.
-
-**Channel hierarchy enforcement**
-Email is always the first outreach channel. SMS is gated on a prior email reply — the `is_warm_lead()` check in `sms_handler.py` blocks cold SMS outreach. Voice (discovery call) is the final channel, booked by the agent and delivered by a human Tenacious delivery lead.
-
-**Bench-to-brief match gating**
-Before composing any outreach the system checks `bench_summary.json`. If the prospect's required tech stacks are not available, the agent flags this in the context brief rather than over-committing capacity that does not exist.
-
-**Booking triggers second HubSpot write**
-When a discovery call is successfully booked, a second HubSpot note is written to the same contact record referencing the booking ID, UID, and start time. This keeps the CRM record complete without a separate sync process.
-
-**Tone preservation check**
-Every email draft is scored against the 5 Tenacious tone markers before sending. Drafts scoring below 4/5 are flagged. All 20 batch-run prospects scored 5/5.
+| Limitation | Impact | Fix Required Before |
+|---|---|---|
+| Segment 1 untestable end-to-end | ~60-70% Segment 1 candidates excluded | Segment 1 deployment |
+| ODM data freshness lag | Stale funding claims after 180 days | Segment 1 deployment |
+| bench_summary.json not auto-updated | Bench over-commitment mid-week | Live deployment |
+| Segment 3 untested in batch flow | Cal.com booking path untested at scale | Segment 3 deployment |
 
 ---
 
-## Known Limitations (Act II)
+## For the Engineer Who Inherits This
 
-- `layoffs.fyi` CSV not auto-downloaded — returns no layoff signal by default. Download manually from layoffs.fyi and place at `data/layoffs.csv`
-- Leadership change detection uses mock data — Crunchbase People API integration pending
-- Job post velocity uses RemoteOK API — Wellfound and LinkedIn blocked by Cloudflare on server
-- Cal.com booking fires at confidence >= 75% — most synthetic test prospects score 70%, so booking is skipped in test runs by design
-
----
-
-## Kill Switch
-
-Default is always dry run. Set explicitly to disable:
-
-```bash
-# In .env
-DRY_RUN=true   # routes all outbound to staff sink (default)
-DRY_RUN=false  # live mode - only after program staff approval
-```
-
-Verify before any run:
-```bash
-grep DRY_RUN .env
-```
-
----
-
-## Data Handling
-
-- All prospect interactions use synthetic profiles during the challenge week
-- No real Tenacious customer data is stored in this repository
-- Seed materials are excluded from git via `.gitignore`
-- All outbound during testing routes to staff-controlled sink when `DRY_RUN=true`
+1. Read `seeds/seed/icp_definition.md` before changing any segment logic — segment names are fixed for grading.
+2. Read `seeds/seed/style_guide.md` before changing any email templates — 5 tone markers must be preserved.
+3. Never modify `bench_summary.json` manually — it updates weekly from Tenacious ops.
+4. The `segment_confidence` threshold (0.6 for abstain, 0.75 for booking) is the primary quality lever.
+5. All numeric claims in `eval/` trace back to tau2-Bench simulation files — do not edit manually.
+6. `DRY_RUN` must be explicitly set to `false` for live deployment — default is always `true`.
+7. **Do not add explicit rules to the LLM system prompt** to fix honesty issues — Act IV showed this makes performance significantly worse (p=0.0018). Fix honesty at the data/pipeline level instead.
+8. The kill-switch trigger is 2 wrong-signal complaints per 100 emails in any rolling 7-day window. Track this in HubSpot from day one of live deployment.
+9. Segment 1 is undeployable without a job-data API fallback (Wellfound or Coresignal). RemoteOK only covers remote-first companies.
+10. Seeds are gitignored. Never commit seed materials to GitHub.
