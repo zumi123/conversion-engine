@@ -1,0 +1,412 @@
+============================================================
+Advanced Adversarial Probes — Designed to Break System
+============================================================
+
+── Probe: A. All AI signals true — should score 3 but bypass filters ──
+
+Running enrichment pipeline for: FakeAICorp
+  [1/6] Looking up Crunchbase data...
+  Company 'FakeAICorp' not in ODM sample - using mock data
+  [2/6] Checking funding events...
+  [3/6] Checking layoffs.fyi...
+layoffs.csv not found - returning no layoff signal
+  [4/6] Fetching job posts...
+Fetching jobs from RemoteOK...
+Total jobs fetched: 100
+Sample job structure:
+{
+  "slug": "remote-bookkeeper-vidinext-1131290",
+  "id": "1131290",
+  "epoch": 1776945859,
+  "date": "2026-04-23T12:04:19+00:00",
+  "company": "Vidinext",
+  "company_logo": "",
+  "position": "Bookkeeper",
+  "tags": [
+    "other",
+    "accounting",
+    "finance"
+  ],
+  "description": "<p class=\"MsoNormal\" style=\"margin:2pt 0cm 2pt 0cm;\"><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">Vidinext AG is looking for a detail-oriented, German-speaking Bookkeeper to support the financial administration of a Swiss-incorporated, FSE-listed media technology company and its subsidiaries in Germany. This is a remote opportunity and can be arranged as part-time, full-time, or freelance work.</span></p><p class=\"MsoNormal\" style=\"margin:2pt 0cm 2pt 0cm;\"><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">\u00c2\u00a0</span></p><p class=\"MsoNormal\" style=\"margin:2pt 0cm 2pt 0cm;\"><strong><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">Key responsibilities</span></strong></p><ul style=\"margin-top:0cm;\" type=\"disc\"><li class=\"MsoNormal\" style=\"margin-top:2pt;margin-bottom:2pt;\"><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">Maintain accurate accounting records in line with local GAAP requirements</span></li><li class=\"MsoNormal\" style=\"margin-top:2pt;margin-bottom:2pt;\"><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">Process invoices and payments</span></li><li class=\"MsoNormal\" style=\"margin-top:2pt;margin-bottom:2pt;\"><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">Support VAT compliance, including EU OSS obligations</span></li><li class=\"MsoNormal\" style=\"margin-top:2pt;margin-bottom:2pt;\"><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">Report to the CFO</span></li></ul><p class=\"MsoNormal\" style=\"margin:2pt 0cm 2pt 0cm;\"><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">Experience with intercompany transactions and listed-company reporting obligations is an advantage.</span></p><p class=\"MsoNormal\" style=\"margin:2pt 0cm 2pt 0cm;\"><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">\u00c2\u00a0</span></p><p class=\"MsoNormal\" style=\"margin:2pt 0cm 2pt 0cm;\"><strong><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">Requirements</span></strong></p><ul style=\"margin-top:0cm;\" type=\"disc\"><li class=\"MsoNormal\" style=\"margin-top:2pt;margin-bottom:2pt;\"><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">Fluency in German (essential)</span></li><li class=\"MsoNormal\" style=\"margin-top:2pt;margin-bottom:2pt;\"><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">Working proficiency in English (required)</span></li></ul><p class=\"MsoNormal\" style=\"margin:2pt 0cm 2pt 36pt;\"><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">\u00c2\u00a0</span></p><p class=\"MsoNormal\" style=\"margin:2pt 0cm 2pt 0cm;\"><strong><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">How to apply</span></strong></p><p class=\"MsoNormal\" style=\"margin:2pt 0cm 2pt 0cm;\"><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">Send CV and short cover note to </span><span lang=\"en-cy\" xml:lang=\"en-cy\"><a href=\"mailto:jobs@vidinext.com\"><span style=\"font-size:12pt;\">jobs@vidinext.com</span></a></span></p><p class=\"MsoNormal\" style=\"margin:2pt 0cm 2pt 0cm;\"><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">\u00c2\u00a0</span></p><p class=\"MsoNormal\" style=\"margin:2pt 0cm 2pt 0cm;\"><strong><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">Location and salary</span></strong></p><p class=\"MsoNormal\" style=\"margin:2pt 0cm 2pt 0cm;\"><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">Remote | \u00e2\u0082\u00ac2,000\u00e2\u0080\u0093\u00e2\u0082\u00ac3,000 pcm commensurate with experience</span></p><br/><br/>Please mention the word **JOLLY** and tag RMTk3LjE1Ni43MS42NQ== when applying to show you read the job post completely (#RMTk3LjE1Ni43MS42NQ==). This is a beta feature to avoid spam applicants. Companies can search these words to find applicants that read this and see they're human.",
+  "location": "",
+  "salary_min": 30000,
+  "salary_max": 40000,
+  "apply_url": "https://remoteOK.com/remote-jobs/remote-bookkeeper-vidinext-1131290",
+  "original": true,
+  "logo": "",
+  "url": "https://remoteOK.com/remote-jobs/remote-bookkeeper-vidinext-1131290"
+}
+  [5/6] Checking leadership changes...
+  [6/6] Scoring AI maturity...
+
+  Brief saved to: outputs/hiring_signal_brief_fakeaicorp.json
+  Segment: segment_4_specialized_capability (confidence: 0.7)
+  AI Maturity: 3/3
+  Leadership detected: False (method: mock, confidence: medium)
+  Signal confidence summary: {'crunchbase_firmographics': 'low', 'funding_event': 'medium', 'layoff_event': 'low', 'leadership_change': 'medium', 'hiring_velocity': 'low', 'ai_maturity': 'medium', 'overall_brief_confidence': 'high'}
+  Honesty flags: ['weak_hiring_velocity_signal', 'tech_stack_inferred_not_confirmed']
+  Expected segment: segment_4_specialized_capability
+  Actual: segment_4_specialized_capability (confidence: 0.7)
+  AI maturity: 3/3 (conf: 0.5)
+  Honesty flags: ['weak_hiring_velocity_signal', 'tech_stack_inferred_not_confirmed']
+  Status: ✅ PASS
+
+── Probe: B. New CTO at 10-person startup — should fail 50-500 headcount rule ──
+
+Running enrichment pipeline for: NewCTOTiny
+  [1/6] Looking up Crunchbase data...
+  Company 'NewCTOTiny' not in ODM sample - using mock data
+  [2/6] Checking funding events...
+  [3/6] Checking layoffs.fyi...
+layoffs.csv not found - returning no layoff signal
+  [4/6] Fetching job posts...
+Fetching jobs from RemoteOK...
+Total jobs fetched: 100
+Sample job structure:
+{
+  "slug": "remote-bookkeeper-vidinext-1131290",
+  "id": "1131290",
+  "epoch": 1776945859,
+  "date": "2026-04-23T12:04:19+00:00",
+  "company": "Vidinext",
+  "company_logo": "",
+  "position": "Bookkeeper",
+  "tags": [
+    "other",
+    "accounting",
+    "finance"
+  ],
+  "description": "<p class=\"MsoNormal\" style=\"margin:2pt 0cm 2pt 0cm;\"><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">Vidinext AG is looking for a detail-oriented, German-speaking Bookkeeper to support the financial administration of a Swiss-incorporated, FSE-listed media technology company and its subsidiaries in Germany. This is a remote opportunity and can be arranged as part-time, full-time, or freelance work.</span></p><p class=\"MsoNormal\" style=\"margin:2pt 0cm 2pt 0cm;\"><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">\u00c2\u00a0</span></p><p class=\"MsoNormal\" style=\"margin:2pt 0cm 2pt 0cm;\"><strong><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">Key responsibilities</span></strong></p><ul style=\"margin-top:0cm;\" type=\"disc\"><li class=\"MsoNormal\" style=\"margin-top:2pt;margin-bottom:2pt;\"><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">Maintain accurate accounting records in line with local GAAP requirements</span></li><li class=\"MsoNormal\" style=\"margin-top:2pt;margin-bottom:2pt;\"><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">Process invoices and payments</span></li><li class=\"MsoNormal\" style=\"margin-top:2pt;margin-bottom:2pt;\"><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">Support VAT compliance, including EU OSS obligations</span></li><li class=\"MsoNormal\" style=\"margin-top:2pt;margin-bottom:2pt;\"><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">Report to the CFO</span></li></ul><p class=\"MsoNormal\" style=\"margin:2pt 0cm 2pt 0cm;\"><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">Experience with intercompany transactions and listed-company reporting obligations is an advantage.</span></p><p class=\"MsoNormal\" style=\"margin:2pt 0cm 2pt 0cm;\"><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">\u00c2\u00a0</span></p><p class=\"MsoNormal\" style=\"margin:2pt 0cm 2pt 0cm;\"><strong><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">Requirements</span></strong></p><ul style=\"margin-top:0cm;\" type=\"disc\"><li class=\"MsoNormal\" style=\"margin-top:2pt;margin-bottom:2pt;\"><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">Fluency in German (essential)</span></li><li class=\"MsoNormal\" style=\"margin-top:2pt;margin-bottom:2pt;\"><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">Working proficiency in English (required)</span></li></ul><p class=\"MsoNormal\" style=\"margin:2pt 0cm 2pt 36pt;\"><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">\u00c2\u00a0</span></p><p class=\"MsoNormal\" style=\"margin:2pt 0cm 2pt 0cm;\"><strong><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">How to apply</span></strong></p><p class=\"MsoNormal\" style=\"margin:2pt 0cm 2pt 0cm;\"><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">Send CV and short cover note to </span><span lang=\"en-cy\" xml:lang=\"en-cy\"><a href=\"mailto:jobs@vidinext.com\"><span style=\"font-size:12pt;\">jobs@vidinext.com</span></a></span></p><p class=\"MsoNormal\" style=\"margin:2pt 0cm 2pt 0cm;\"><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">\u00c2\u00a0</span></p><p class=\"MsoNormal\" style=\"margin:2pt 0cm 2pt 0cm;\"><strong><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">Location and salary</span></strong></p><p class=\"MsoNormal\" style=\"margin:2pt 0cm 2pt 0cm;\"><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">Remote | \u00e2\u0082\u00ac2,000\u00e2\u0080\u0093\u00e2\u0082\u00ac3,000 pcm commensurate with experience</span></p><br/><br/>Please mention the word **JOLLY** and tag RMTk3LjE1Ni43MS42NQ== when applying to show you read the job post completely (#RMTk3LjE1Ni43MS42NQ==). This is a beta feature to avoid spam applicants. Companies can search these words to find applicants that read this and see they're human.",
+  "location": "",
+  "salary_min": 30000,
+  "salary_max": 40000,
+  "apply_url": "https://remoteOK.com/remote-jobs/remote-bookkeeper-vidinext-1131290",
+  "original": true,
+  "logo": "",
+  "url": "https://remoteOK.com/remote-jobs/remote-bookkeeper-vidinext-1131290"
+}
+  [5/6] Checking leadership changes...
+  [6/6] Scoring AI maturity...
+
+  Brief saved to: outputs/hiring_signal_brief_newctotiny.json
+  Segment: abstain (confidence: 0.4)
+  AI Maturity: 0/3
+  Leadership detected: True (method: mock, confidence: high)
+  Signal confidence summary: {'crunchbase_firmographics': 'low', 'funding_event': 'medium', 'layoff_event': 'low', 'leadership_change': 'high', 'hiring_velocity': 'low', 'ai_maturity': 'low', 'overall_brief_confidence': 'medium'}
+  Honesty flags: ['weak_hiring_velocity_signal', 'weak_ai_maturity_signal', 'tech_stack_inferred_not_confirmed']
+  Expected segment: abstain
+  Actual: abstain (confidence: 0.4)
+  AI maturity: 0/3 (conf: 0.25)
+  Honesty flags: ['weak_hiring_velocity_signal', 'weak_ai_maturity_signal', 'tech_stack_inferred_not_confirmed']
+  Status: ✅ PASS
+
+── Probe: C. New CTO with 45-person company (mock default) ──
+
+Running enrichment pipeline for: CTOMidCo
+  [1/6] Looking up Crunchbase data...
+  Company 'CTOMidCo' not in ODM sample - using mock data
+  [2/6] Checking funding events...
+  [3/6] Checking layoffs.fyi...
+layoffs.csv not found - returning no layoff signal
+  [4/6] Fetching job posts...
+Fetching jobs from RemoteOK...
+Total jobs fetched: 100
+Sample job structure:
+{
+  "slug": "remote-bookkeeper-vidinext-1131290",
+  "id": "1131290",
+  "epoch": 1776945859,
+  "date": "2026-04-23T12:04:19+00:00",
+  "company": "Vidinext",
+  "company_logo": "",
+  "position": "Bookkeeper",
+  "tags": [
+    "other",
+    "accounting",
+    "finance"
+  ],
+  "description": "<p class=\"MsoNormal\" style=\"margin:2pt 0cm 2pt 0cm;\"><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">Vidinext AG is looking for a detail-oriented, German-speaking Bookkeeper to support the financial administration of a Swiss-incorporated, FSE-listed media technology company and its subsidiaries in Germany. This is a remote opportunity and can be arranged as part-time, full-time, or freelance work.</span></p><p class=\"MsoNormal\" style=\"margin:2pt 0cm 2pt 0cm;\"><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">\u00c2\u00a0</span></p><p class=\"MsoNormal\" style=\"margin:2pt 0cm 2pt 0cm;\"><strong><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">Key responsibilities</span></strong></p><ul style=\"margin-top:0cm;\" type=\"disc\"><li class=\"MsoNormal\" style=\"margin-top:2pt;margin-bottom:2pt;\"><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">Maintain accurate accounting records in line with local GAAP requirements</span></li><li class=\"MsoNormal\" style=\"margin-top:2pt;margin-bottom:2pt;\"><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">Process invoices and payments</span></li><li class=\"MsoNormal\" style=\"margin-top:2pt;margin-bottom:2pt;\"><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">Support VAT compliance, including EU OSS obligations</span></li><li class=\"MsoNormal\" style=\"margin-top:2pt;margin-bottom:2pt;\"><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">Report to the CFO</span></li></ul><p class=\"MsoNormal\" style=\"margin:2pt 0cm 2pt 0cm;\"><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">Experience with intercompany transactions and listed-company reporting obligations is an advantage.</span></p><p class=\"MsoNormal\" style=\"margin:2pt 0cm 2pt 0cm;\"><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">\u00c2\u00a0</span></p><p class=\"MsoNormal\" style=\"margin:2pt 0cm 2pt 0cm;\"><strong><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">Requirements</span></strong></p><ul style=\"margin-top:0cm;\" type=\"disc\"><li class=\"MsoNormal\" style=\"margin-top:2pt;margin-bottom:2pt;\"><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">Fluency in German (essential)</span></li><li class=\"MsoNormal\" style=\"margin-top:2pt;margin-bottom:2pt;\"><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">Working proficiency in English (required)</span></li></ul><p class=\"MsoNormal\" style=\"margin:2pt 0cm 2pt 36pt;\"><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">\u00c2\u00a0</span></p><p class=\"MsoNormal\" style=\"margin:2pt 0cm 2pt 0cm;\"><strong><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">How to apply</span></strong></p><p class=\"MsoNormal\" style=\"margin:2pt 0cm 2pt 0cm;\"><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">Send CV and short cover note to </span><span lang=\"en-cy\" xml:lang=\"en-cy\"><a href=\"mailto:jobs@vidinext.com\"><span style=\"font-size:12pt;\">jobs@vidinext.com</span></a></span></p><p class=\"MsoNormal\" style=\"margin:2pt 0cm 2pt 0cm;\"><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">\u00c2\u00a0</span></p><p class=\"MsoNormal\" style=\"margin:2pt 0cm 2pt 0cm;\"><strong><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">Location and salary</span></strong></p><p class=\"MsoNormal\" style=\"margin:2pt 0cm 2pt 0cm;\"><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">Remote | \u00e2\u0082\u00ac2,000\u00e2\u0080\u0093\u00e2\u0082\u00ac3,000 pcm commensurate with experience</span></p><br/><br/>Please mention the word **JOLLY** and tag RMTk3LjE1Ni43MS42NQ== when applying to show you read the job post completely (#RMTk3LjE1Ni43MS42NQ==). This is a beta feature to avoid spam applicants. Companies can search these words to find applicants that read this and see they're human.",
+  "location": "",
+  "salary_min": 30000,
+  "salary_max": 40000,
+  "apply_url": "https://remoteOK.com/remote-jobs/remote-bookkeeper-vidinext-1131290",
+  "original": true,
+  "logo": "",
+  "url": "https://remoteOK.com/remote-jobs/remote-bookkeeper-vidinext-1131290"
+}
+  [5/6] Checking leadership changes...
+  [6/6] Scoring AI maturity...
+
+  Brief saved to: outputs/hiring_signal_brief_ctomidco.json
+  Segment: abstain (confidence: 0.4)
+  AI Maturity: 0/3
+  Leadership detected: True (method: mock, confidence: high)
+  Signal confidence summary: {'crunchbase_firmographics': 'low', 'funding_event': 'medium', 'layoff_event': 'low', 'leadership_change': 'high', 'hiring_velocity': 'low', 'ai_maturity': 'low', 'overall_brief_confidence': 'medium'}
+  Honesty flags: ['weak_hiring_velocity_signal', 'weak_ai_maturity_signal', 'tech_stack_inferred_not_confirmed']
+  Expected segment: segment_3_leadership_transition
+  Actual: abstain (confidence: 0.4)
+  AI maturity: 0/3 (conf: 0.0)
+  Honesty flags: ['weak_hiring_velocity_signal', 'weak_ai_maturity_signal', 'tech_stack_inferred_not_confirmed']
+  Status: ❌ FAIL
+
+── Probe: D. AI score 3 with ONLY low-confidence inputs (mock abuse) ──
+
+Running enrichment pipeline for: WeakEvidenceAI
+  [1/6] Looking up Crunchbase data...
+  Company 'WeakEvidenceAI' not in ODM sample - using mock data
+  [2/6] Checking funding events...
+  [3/6] Checking layoffs.fyi...
+layoffs.csv not found - returning no layoff signal
+  [4/6] Fetching job posts...
+Fetching jobs from RemoteOK...
+Total jobs fetched: 100
+Sample job structure:
+{
+  "slug": "remote-bookkeeper-vidinext-1131290",
+  "id": "1131290",
+  "epoch": 1776945859,
+  "date": "2026-04-23T12:04:19+00:00",
+  "company": "Vidinext",
+  "company_logo": "",
+  "position": "Bookkeeper",
+  "tags": [
+    "other",
+    "accounting",
+    "finance"
+  ],
+  "description": "<p class=\"MsoNormal\" style=\"margin:2pt 0cm 2pt 0cm;\"><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">Vidinext AG is looking for a detail-oriented, German-speaking Bookkeeper to support the financial administration of a Swiss-incorporated, FSE-listed media technology company and its subsidiaries in Germany. This is a remote opportunity and can be arranged as part-time, full-time, or freelance work.</span></p><p class=\"MsoNormal\" style=\"margin:2pt 0cm 2pt 0cm;\"><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">\u00c2\u00a0</span></p><p class=\"MsoNormal\" style=\"margin:2pt 0cm 2pt 0cm;\"><strong><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">Key responsibilities</span></strong></p><ul style=\"margin-top:0cm;\" type=\"disc\"><li class=\"MsoNormal\" style=\"margin-top:2pt;margin-bottom:2pt;\"><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">Maintain accurate accounting records in line with local GAAP requirements</span></li><li class=\"MsoNormal\" style=\"margin-top:2pt;margin-bottom:2pt;\"><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">Process invoices and payments</span></li><li class=\"MsoNormal\" style=\"margin-top:2pt;margin-bottom:2pt;\"><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">Support VAT compliance, including EU OSS obligations</span></li><li class=\"MsoNormal\" style=\"margin-top:2pt;margin-bottom:2pt;\"><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">Report to the CFO</span></li></ul><p class=\"MsoNormal\" style=\"margin:2pt 0cm 2pt 0cm;\"><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">Experience with intercompany transactions and listed-company reporting obligations is an advantage.</span></p><p class=\"MsoNormal\" style=\"margin:2pt 0cm 2pt 0cm;\"><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">\u00c2\u00a0</span></p><p class=\"MsoNormal\" style=\"margin:2pt 0cm 2pt 0cm;\"><strong><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">Requirements</span></strong></p><ul style=\"margin-top:0cm;\" type=\"disc\"><li class=\"MsoNormal\" style=\"margin-top:2pt;margin-bottom:2pt;\"><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">Fluency in German (essential)</span></li><li class=\"MsoNormal\" style=\"margin-top:2pt;margin-bottom:2pt;\"><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">Working proficiency in English (required)</span></li></ul><p class=\"MsoNormal\" style=\"margin:2pt 0cm 2pt 36pt;\"><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">\u00c2\u00a0</span></p><p class=\"MsoNormal\" style=\"margin:2pt 0cm 2pt 0cm;\"><strong><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">How to apply</span></strong></p><p class=\"MsoNormal\" style=\"margin:2pt 0cm 2pt 0cm;\"><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">Send CV and short cover note to </span><span lang=\"en-cy\" xml:lang=\"en-cy\"><a href=\"mailto:jobs@vidinext.com\"><span style=\"font-size:12pt;\">jobs@vidinext.com</span></a></span></p><p class=\"MsoNormal\" style=\"margin:2pt 0cm 2pt 0cm;\"><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">\u00c2\u00a0</span></p><p class=\"MsoNormal\" style=\"margin:2pt 0cm 2pt 0cm;\"><strong><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">Location and salary</span></strong></p><p class=\"MsoNormal\" style=\"margin:2pt 0cm 2pt 0cm;\"><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">Remote | \u00e2\u0082\u00ac2,000\u00e2\u0080\u0093\u00e2\u0082\u00ac3,000 pcm commensurate with experience</span></p><br/><br/>Please mention the word **JOLLY** and tag RMTk3LjE1Ni43MS42NQ== when applying to show you read the job post completely (#RMTk3LjE1Ni43MS42NQ==). This is a beta feature to avoid spam applicants. Companies can search these words to find applicants that read this and see they're human.",
+  "location": "",
+  "salary_min": 30000,
+  "salary_max": 40000,
+  "apply_url": "https://remoteOK.com/remote-jobs/remote-bookkeeper-vidinext-1131290",
+  "original": true,
+  "logo": "",
+  "url": "https://remoteOK.com/remote-jobs/remote-bookkeeper-vidinext-1131290"
+}
+  [5/6] Checking leadership changes...
+  [6/6] Scoring AI maturity...
+
+  Brief saved to: outputs/hiring_signal_brief_weakevidenceai.json
+  Segment: segment_4_specialized_capability (confidence: 0.7)
+  AI Maturity: 2/3
+  Leadership detected: False (method: mock, confidence: medium)
+  Signal confidence summary: {'crunchbase_firmographics': 'low', 'funding_event': 'medium', 'layoff_event': 'low', 'leadership_change': 'medium', 'hiring_velocity': 'low', 'ai_maturity': 'medium', 'overall_brief_confidence': 'high'}
+  Honesty flags: ['weak_hiring_velocity_signal', 'weak_ai_maturity_signal', 'tech_stack_inferred_not_confirmed']
+  Expected segment: segment_4_specialized_capability
+  Actual: segment_4_specialized_capability (confidence: 0.7)
+  AI maturity: 2/3 (conf: 0.4)
+  Honesty flags: ['weak_hiring_velocity_signal', 'weak_ai_maturity_signal', 'tech_stack_inferred_not_confirmed']
+  Status: ✅ PASS
+
+── Probe: E. AI score exactly 2 — classifies Seg 4 even if weak? ──
+
+Running enrichment pipeline for: BoundaryCo
+  [1/6] Looking up Crunchbase data...
+  Company 'BoundaryCo' not in ODM sample - using mock data
+  [2/6] Checking funding events...
+  [3/6] Checking layoffs.fyi...
+layoffs.csv not found - returning no layoff signal
+  [4/6] Fetching job posts...
+Fetching jobs from RemoteOK...
+Total jobs fetched: 100
+Sample job structure:
+{
+  "slug": "remote-bookkeeper-vidinext-1131290",
+  "id": "1131290",
+  "epoch": 1776945859,
+  "date": "2026-04-23T12:04:19+00:00",
+  "company": "Vidinext",
+  "company_logo": "",
+  "position": "Bookkeeper",
+  "tags": [
+    "other",
+    "accounting",
+    "finance"
+  ],
+  "description": "<p class=\"MsoNormal\" style=\"margin:2pt 0cm 2pt 0cm;\"><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">Vidinext AG is looking for a detail-oriented, German-speaking Bookkeeper to support the financial administration of a Swiss-incorporated, FSE-listed media technology company and its subsidiaries in Germany. This is a remote opportunity and can be arranged as part-time, full-time, or freelance work.</span></p><p class=\"MsoNormal\" style=\"margin:2pt 0cm 2pt 0cm;\"><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">\u00c2\u00a0</span></p><p class=\"MsoNormal\" style=\"margin:2pt 0cm 2pt 0cm;\"><strong><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">Key responsibilities</span></strong></p><ul style=\"margin-top:0cm;\" type=\"disc\"><li class=\"MsoNormal\" style=\"margin-top:2pt;margin-bottom:2pt;\"><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">Maintain accurate accounting records in line with local GAAP requirements</span></li><li class=\"MsoNormal\" style=\"margin-top:2pt;margin-bottom:2pt;\"><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">Process invoices and payments</span></li><li class=\"MsoNormal\" style=\"margin-top:2pt;margin-bottom:2pt;\"><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">Support VAT compliance, including EU OSS obligations</span></li><li class=\"MsoNormal\" style=\"margin-top:2pt;margin-bottom:2pt;\"><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">Report to the CFO</span></li></ul><p class=\"MsoNormal\" style=\"margin:2pt 0cm 2pt 0cm;\"><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">Experience with intercompany transactions and listed-company reporting obligations is an advantage.</span></p><p class=\"MsoNormal\" style=\"margin:2pt 0cm 2pt 0cm;\"><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">\u00c2\u00a0</span></p><p class=\"MsoNormal\" style=\"margin:2pt 0cm 2pt 0cm;\"><strong><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">Requirements</span></strong></p><ul style=\"margin-top:0cm;\" type=\"disc\"><li class=\"MsoNormal\" style=\"margin-top:2pt;margin-bottom:2pt;\"><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">Fluency in German (essential)</span></li><li class=\"MsoNormal\" style=\"margin-top:2pt;margin-bottom:2pt;\"><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">Working proficiency in English (required)</span></li></ul><p class=\"MsoNormal\" style=\"margin:2pt 0cm 2pt 36pt;\"><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">\u00c2\u00a0</span></p><p class=\"MsoNormal\" style=\"margin:2pt 0cm 2pt 0cm;\"><strong><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">How to apply</span></strong></p><p class=\"MsoNormal\" style=\"margin:2pt 0cm 2pt 0cm;\"><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">Send CV and short cover note to </span><span lang=\"en-cy\" xml:lang=\"en-cy\"><a href=\"mailto:jobs@vidinext.com\"><span style=\"font-size:12pt;\">jobs@vidinext.com</span></a></span></p><p class=\"MsoNormal\" style=\"margin:2pt 0cm 2pt 0cm;\"><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">\u00c2\u00a0</span></p><p class=\"MsoNormal\" style=\"margin:2pt 0cm 2pt 0cm;\"><strong><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">Location and salary</span></strong></p><p class=\"MsoNormal\" style=\"margin:2pt 0cm 2pt 0cm;\"><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">Remote | \u00e2\u0082\u00ac2,000\u00e2\u0080\u0093\u00e2\u0082\u00ac3,000 pcm commensurate with experience</span></p><br/><br/>Please mention the word **JOLLY** and tag RMTk3LjE1Ni43MS42NQ== when applying to show you read the job post completely (#RMTk3LjE1Ni43MS42NQ==). This is a beta feature to avoid spam applicants. Companies can search these words to find applicants that read this and see they're human.",
+  "location": "",
+  "salary_min": 30000,
+  "salary_max": 40000,
+  "apply_url": "https://remoteOK.com/remote-jobs/remote-bookkeeper-vidinext-1131290",
+  "original": true,
+  "logo": "",
+  "url": "https://remoteOK.com/remote-jobs/remote-bookkeeper-vidinext-1131290"
+}
+  [5/6] Checking leadership changes...
+  [6/6] Scoring AI maturity...
+
+  Brief saved to: outputs/hiring_signal_brief_boundaryco.json
+  Segment: abstain (confidence: 0.4)
+  AI Maturity: 1/3
+  Leadership detected: False (method: mock, confidence: medium)
+  Signal confidence summary: {'crunchbase_firmographics': 'low', 'funding_event': 'medium', 'layoff_event': 'low', 'leadership_change': 'medium', 'hiring_velocity': 'low', 'ai_maturity': 'low', 'overall_brief_confidence': 'medium'}
+  Honesty flags: ['weak_hiring_velocity_signal', 'weak_ai_maturity_signal', 'tech_stack_inferred_not_confirmed']
+  Expected segment: segment_4_specialized_capability
+  Actual: abstain (confidence: 0.4)
+  AI maturity: 1/3 (conf: 0.25)
+  Honesty flags: ['weak_hiring_velocity_signal', 'weak_ai_maturity_signal', 'tech_stack_inferred_not_confirmed']
+  Status: ❌ FAIL
+
+── Probe: F. No AI but 8 open roles — should classify Segment 1 ──
+
+Running enrichment pipeline for: ScalingStartup
+  [1/6] Looking up Crunchbase data...
+  Company 'ScalingStartup' not in ODM sample - using mock data
+  [2/6] Checking funding events...
+  [3/6] Checking layoffs.fyi...
+layoffs.csv not found - returning no layoff signal
+  [4/6] Fetching job posts...
+Fetching jobs from RemoteOK...
+Total jobs fetched: 100
+Sample job structure:
+{
+  "slug": "remote-bookkeeper-vidinext-1131290",
+  "id": "1131290",
+  "epoch": 1776945859,
+  "date": "2026-04-23T12:04:19+00:00",
+  "company": "Vidinext",
+  "company_logo": "",
+  "position": "Bookkeeper",
+  "tags": [
+    "other",
+    "accounting",
+    "finance"
+  ],
+  "description": "<p class=\"MsoNormal\" style=\"margin:2pt 0cm 2pt 0cm;\"><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">Vidinext AG is looking for a detail-oriented, German-speaking Bookkeeper to support the financial administration of a Swiss-incorporated, FSE-listed media technology company and its subsidiaries in Germany. This is a remote opportunity and can be arranged as part-time, full-time, or freelance work.</span></p><p class=\"MsoNormal\" style=\"margin:2pt 0cm 2pt 0cm;\"><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">\u00c2\u00a0</span></p><p class=\"MsoNormal\" style=\"margin:2pt 0cm 2pt 0cm;\"><strong><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">Key responsibilities</span></strong></p><ul style=\"margin-top:0cm;\" type=\"disc\"><li class=\"MsoNormal\" style=\"margin-top:2pt;margin-bottom:2pt;\"><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">Maintain accurate accounting records in line with local GAAP requirements</span></li><li class=\"MsoNormal\" style=\"margin-top:2pt;margin-bottom:2pt;\"><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">Process invoices and payments</span></li><li class=\"MsoNormal\" style=\"margin-top:2pt;margin-bottom:2pt;\"><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">Support VAT compliance, including EU OSS obligations</span></li><li class=\"MsoNormal\" style=\"margin-top:2pt;margin-bottom:2pt;\"><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">Report to the CFO</span></li></ul><p class=\"MsoNormal\" style=\"margin:2pt 0cm 2pt 0cm;\"><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">Experience with intercompany transactions and listed-company reporting obligations is an advantage.</span></p><p class=\"MsoNormal\" style=\"margin:2pt 0cm 2pt 0cm;\"><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">\u00c2\u00a0</span></p><p class=\"MsoNormal\" style=\"margin:2pt 0cm 2pt 0cm;\"><strong><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">Requirements</span></strong></p><ul style=\"margin-top:0cm;\" type=\"disc\"><li class=\"MsoNormal\" style=\"margin-top:2pt;margin-bottom:2pt;\"><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">Fluency in German (essential)</span></li><li class=\"MsoNormal\" style=\"margin-top:2pt;margin-bottom:2pt;\"><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">Working proficiency in English (required)</span></li></ul><p class=\"MsoNormal\" style=\"margin:2pt 0cm 2pt 36pt;\"><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">\u00c2\u00a0</span></p><p class=\"MsoNormal\" style=\"margin:2pt 0cm 2pt 0cm;\"><strong><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">How to apply</span></strong></p><p class=\"MsoNormal\" style=\"margin:2pt 0cm 2pt 0cm;\"><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">Send CV and short cover note to </span><span lang=\"en-cy\" xml:lang=\"en-cy\"><a href=\"mailto:jobs@vidinext.com\"><span style=\"font-size:12pt;\">jobs@vidinext.com</span></a></span></p><p class=\"MsoNormal\" style=\"margin:2pt 0cm 2pt 0cm;\"><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">\u00c2\u00a0</span></p><p class=\"MsoNormal\" style=\"margin:2pt 0cm 2pt 0cm;\"><strong><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">Location and salary</span></strong></p><p class=\"MsoNormal\" style=\"margin:2pt 0cm 2pt 0cm;\"><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">Remote | \u00e2\u0082\u00ac2,000\u00e2\u0080\u0093\u00e2\u0082\u00ac3,000 pcm commensurate with experience</span></p><br/><br/>Please mention the word **JOLLY** and tag RMTk3LjE1Ni43MS42NQ== when applying to show you read the job post completely (#RMTk3LjE1Ni43MS42NQ==). This is a beta feature to avoid spam applicants. Companies can search these words to find applicants that read this and see they're human.",
+  "location": "",
+  "salary_min": 30000,
+  "salary_max": 40000,
+  "apply_url": "https://remoteOK.com/remote-jobs/remote-bookkeeper-vidinext-1131290",
+  "original": true,
+  "logo": "",
+  "url": "https://remoteOK.com/remote-jobs/remote-bookkeeper-vidinext-1131290"
+}
+  [5/6] Checking leadership changes...
+  [6/6] Scoring AI maturity...
+
+  Brief saved to: outputs/hiring_signal_brief_scalingstartup.json
+  Segment: abstain (confidence: 0.4)
+  AI Maturity: 0/3
+  Leadership detected: False (method: mock, confidence: medium)
+  Signal confidence summary: {'crunchbase_firmographics': 'low', 'funding_event': 'medium', 'layoff_event': 'low', 'leadership_change': 'medium', 'hiring_velocity': 'low', 'ai_maturity': 'low', 'overall_brief_confidence': 'medium'}
+  Honesty flags: ['weak_hiring_velocity_signal', 'weak_ai_maturity_signal', 'tech_stack_inferred_not_confirmed']
+  Expected segment: segment_1_series_a_b
+  Actual: abstain (confidence: 0.4)
+  AI maturity: 0/3 (conf: 0.25)
+  Honesty flags: ['weak_hiring_velocity_signal', 'weak_ai_maturity_signal', 'tech_stack_inferred_not_confirmed']
+  Status: ❌ FAIL
+
+── Probe: G1. First run — Acme AI ──
+
+Running enrichment pipeline for: AcmeRepeatTest
+  [1/6] Looking up Crunchbase data...
+  Company 'AcmeRepeatTest' not in ODM sample - using mock data
+  [2/6] Checking funding events...
+  [3/6] Checking layoffs.fyi...
+layoffs.csv not found - returning no layoff signal
+  [4/6] Fetching job posts...
+Fetching jobs from RemoteOK...
+Total jobs fetched: 100
+Sample job structure:
+{
+  "slug": "remote-bookkeeper-vidinext-1131290",
+  "id": "1131290",
+  "epoch": 1776945859,
+  "date": "2026-04-23T12:04:19+00:00",
+  "company": "Vidinext",
+  "company_logo": "",
+  "position": "Bookkeeper",
+  "tags": [
+    "other",
+    "accounting",
+    "finance"
+  ],
+  "description": "<p class=\"MsoNormal\" style=\"margin:2pt 0cm 2pt 0cm;\"><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">Vidinext AG is looking for a detail-oriented, German-speaking Bookkeeper to support the financial administration of a Swiss-incorporated, FSE-listed media technology company and its subsidiaries in Germany. This is a remote opportunity and can be arranged as part-time, full-time, or freelance work.</span></p><p class=\"MsoNormal\" style=\"margin:2pt 0cm 2pt 0cm;\"><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">\u00c2\u00a0</span></p><p class=\"MsoNormal\" style=\"margin:2pt 0cm 2pt 0cm;\"><strong><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">Key responsibilities</span></strong></p><ul style=\"margin-top:0cm;\" type=\"disc\"><li class=\"MsoNormal\" style=\"margin-top:2pt;margin-bottom:2pt;\"><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">Maintain accurate accounting records in line with local GAAP requirements</span></li><li class=\"MsoNormal\" style=\"margin-top:2pt;margin-bottom:2pt;\"><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">Process invoices and payments</span></li><li class=\"MsoNormal\" style=\"margin-top:2pt;margin-bottom:2pt;\"><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">Support VAT compliance, including EU OSS obligations</span></li><li class=\"MsoNormal\" style=\"margin-top:2pt;margin-bottom:2pt;\"><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">Report to the CFO</span></li></ul><p class=\"MsoNormal\" style=\"margin:2pt 0cm 2pt 0cm;\"><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">Experience with intercompany transactions and listed-company reporting obligations is an advantage.</span></p><p class=\"MsoNormal\" style=\"margin:2pt 0cm 2pt 0cm;\"><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">\u00c2\u00a0</span></p><p class=\"MsoNormal\" style=\"margin:2pt 0cm 2pt 0cm;\"><strong><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">Requirements</span></strong></p><ul style=\"margin-top:0cm;\" type=\"disc\"><li class=\"MsoNormal\" style=\"margin-top:2pt;margin-bottom:2pt;\"><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">Fluency in German (essential)</span></li><li class=\"MsoNormal\" style=\"margin-top:2pt;margin-bottom:2pt;\"><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">Working proficiency in English (required)</span></li></ul><p class=\"MsoNormal\" style=\"margin:2pt 0cm 2pt 36pt;\"><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">\u00c2\u00a0</span></p><p class=\"MsoNormal\" style=\"margin:2pt 0cm 2pt 0cm;\"><strong><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">How to apply</span></strong></p><p class=\"MsoNormal\" style=\"margin:2pt 0cm 2pt 0cm;\"><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">Send CV and short cover note to </span><span lang=\"en-cy\" xml:lang=\"en-cy\"><a href=\"mailto:jobs@vidinext.com\"><span style=\"font-size:12pt;\">jobs@vidinext.com</span></a></span></p><p class=\"MsoNormal\" style=\"margin:2pt 0cm 2pt 0cm;\"><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">\u00c2\u00a0</span></p><p class=\"MsoNormal\" style=\"margin:2pt 0cm 2pt 0cm;\"><strong><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">Location and salary</span></strong></p><p class=\"MsoNormal\" style=\"margin:2pt 0cm 2pt 0cm;\"><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">Remote | \u00e2\u0082\u00ac2,000\u00e2\u0080\u0093\u00e2\u0082\u00ac3,000 pcm commensurate with experience</span></p><br/><br/>Please mention the word **JOLLY** and tag RMTk3LjE1Ni43MS42NQ== when applying to show you read the job post completely (#RMTk3LjE1Ni43MS42NQ==). This is a beta feature to avoid spam applicants. Companies can search these words to find applicants that read this and see they're human.",
+  "location": "",
+  "salary_min": 30000,
+  "salary_max": 40000,
+  "apply_url": "https://remoteOK.com/remote-jobs/remote-bookkeeper-vidinext-1131290",
+  "original": true,
+  "logo": "",
+  "url": "https://remoteOK.com/remote-jobs/remote-bookkeeper-vidinext-1131290"
+}
+  [5/6] Checking leadership changes...
+  [6/6] Scoring AI maturity...
+
+  Brief saved to: outputs/hiring_signal_brief_acmerepeattest.json
+  Segment: segment_4_specialized_capability (confidence: 0.7)
+  AI Maturity: 3/3
+  Leadership detected: False (method: mock, confidence: medium)
+  Signal confidence summary: {'crunchbase_firmographics': 'low', 'funding_event': 'medium', 'layoff_event': 'low', 'leadership_change': 'medium', 'hiring_velocity': 'low', 'ai_maturity': 'medium', 'overall_brief_confidence': 'high'}
+  Honesty flags: ['weak_hiring_velocity_signal', 'tech_stack_inferred_not_confirmed']
+  Expected segment: segment_4_specialized_capability
+  Actual: segment_4_specialized_capability (confidence: 0.7)
+  AI maturity: 3/3 (conf: 0.6)
+  Honesty flags: ['weak_hiring_velocity_signal', 'tech_stack_inferred_not_confirmed']
+  Status: ✅ PASS
+
+── Probe: G2. Second run — same company — should produce same classification ──
+
+Running enrichment pipeline for: AcmeRepeatTest
+  [1/6] Looking up Crunchbase data...
+  Company 'AcmeRepeatTest' not in ODM sample - using mock data
+  [2/6] Checking funding events...
+  [3/6] Checking layoffs.fyi...
+layoffs.csv not found - returning no layoff signal
+  [4/6] Fetching job posts...
+Fetching jobs from RemoteOK...
+Total jobs fetched: 100
+Sample job structure:
+{
+  "slug": "remote-bookkeeper-vidinext-1131290",
+  "id": "1131290",
+  "epoch": 1776945859,
+  "date": "2026-04-23T12:04:19+00:00",
+  "company": "Vidinext",
+  "company_logo": "",
+  "position": "Bookkeeper",
+  "tags": [
+    "other",
+    "accounting",
+    "finance"
+  ],
+  "description": "<p class=\"MsoNormal\" style=\"margin:2pt 0cm 2pt 0cm;\"><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">Vidinext AG is looking for a detail-oriented, German-speaking Bookkeeper to support the financial administration of a Swiss-incorporated, FSE-listed media technology company and its subsidiaries in Germany. This is a remote opportunity and can be arranged as part-time, full-time, or freelance work.</span></p><p class=\"MsoNormal\" style=\"margin:2pt 0cm 2pt 0cm;\"><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">\u00c2\u00a0</span></p><p class=\"MsoNormal\" style=\"margin:2pt 0cm 2pt 0cm;\"><strong><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">Key responsibilities</span></strong></p><ul style=\"margin-top:0cm;\" type=\"disc\"><li class=\"MsoNormal\" style=\"margin-top:2pt;margin-bottom:2pt;\"><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">Maintain accurate accounting records in line with local GAAP requirements</span></li><li class=\"MsoNormal\" style=\"margin-top:2pt;margin-bottom:2pt;\"><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">Process invoices and payments</span></li><li class=\"MsoNormal\" style=\"margin-top:2pt;margin-bottom:2pt;\"><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">Support VAT compliance, including EU OSS obligations</span></li><li class=\"MsoNormal\" style=\"margin-top:2pt;margin-bottom:2pt;\"><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">Report to the CFO</span></li></ul><p class=\"MsoNormal\" style=\"margin:2pt 0cm 2pt 0cm;\"><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">Experience with intercompany transactions and listed-company reporting obligations is an advantage.</span></p><p class=\"MsoNormal\" style=\"margin:2pt 0cm 2pt 0cm;\"><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">\u00c2\u00a0</span></p><p class=\"MsoNormal\" style=\"margin:2pt 0cm 2pt 0cm;\"><strong><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">Requirements</span></strong></p><ul style=\"margin-top:0cm;\" type=\"disc\"><li class=\"MsoNormal\" style=\"margin-top:2pt;margin-bottom:2pt;\"><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">Fluency in German (essential)</span></li><li class=\"MsoNormal\" style=\"margin-top:2pt;margin-bottom:2pt;\"><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">Working proficiency in English (required)</span></li></ul><p class=\"MsoNormal\" style=\"margin:2pt 0cm 2pt 36pt;\"><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">\u00c2\u00a0</span></p><p class=\"MsoNormal\" style=\"margin:2pt 0cm 2pt 0cm;\"><strong><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">How to apply</span></strong></p><p class=\"MsoNormal\" style=\"margin:2pt 0cm 2pt 0cm;\"><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">Send CV and short cover note to </span><span lang=\"en-cy\" xml:lang=\"en-cy\"><a href=\"mailto:jobs@vidinext.com\"><span style=\"font-size:12pt;\">jobs@vidinext.com</span></a></span></p><p class=\"MsoNormal\" style=\"margin:2pt 0cm 2pt 0cm;\"><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">\u00c2\u00a0</span></p><p class=\"MsoNormal\" style=\"margin:2pt 0cm 2pt 0cm;\"><strong><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">Location and salary</span></strong></p><p class=\"MsoNormal\" style=\"margin:2pt 0cm 2pt 0cm;\"><span lang=\"en-cy\" style=\"font-size:12pt;\" xml:lang=\"en-cy\">Remote | \u00e2\u0082\u00ac2,000\u00e2\u0080\u0093\u00e2\u0082\u00ac3,000 pcm commensurate with experience</span></p><br/><br/>Please mention the word **JOLLY** and tag RMTk3LjE1Ni43MS42NQ== when applying to show you read the job post completely (#RMTk3LjE1Ni43MS42NQ==). This is a beta feature to avoid spam applicants. Companies can search these words to find applicants that read this and see they're human.",
+  "location": "",
+  "salary_min": 30000,
+  "salary_max": 40000,
+  "apply_url": "https://remoteOK.com/remote-jobs/remote-bookkeeper-vidinext-1131290",
+  "original": true,
+  "logo": "",
+  "url": "https://remoteOK.com/remote-jobs/remote-bookkeeper-vidinext-1131290"
+}
+  [5/6] Checking leadership changes...
+  [6/6] Scoring AI maturity...
+
+  Brief saved to: outputs/hiring_signal_brief_acmerepeattest.json
+  Segment: segment_4_specialized_capability (confidence: 0.7)
+  AI Maturity: 3/3
+  Leadership detected: False (method: mock, confidence: medium)
+  Signal confidence summary: {'crunchbase_firmographics': 'low', 'funding_event': 'medium', 'layoff_event': 'low', 'leadership_change': 'medium', 'hiring_velocity': 'low', 'ai_maturity': 'medium', 'overall_brief_confidence': 'high'}
+  Honesty flags: ['weak_hiring_velocity_signal', 'tech_stack_inferred_not_confirmed']
+  Expected segment: segment_4_specialized_capability
+  Actual: segment_4_specialized_capability (confidence: 0.7)
+  AI maturity: 3/3 (conf: 0.6)
+  Honesty flags: ['weak_hiring_velocity_signal', 'tech_stack_inferred_not_confirmed']
+  Status: ✅ PASS
+
+
+── Determinism Check ──
+  Run 1: segment_4_specialized_capability
+  Run 2: segment_4_specialized_capability
+  Deterministic: True
+
+============================================================
+SUMMARY — Findings
+============================================================
+Probe A (all signals mocked): segment_4_specialized_capability — AI score 3/3
+Probe B (tiny startup new CTO): abstain — tests 50-500 gate
+Probe C (45-emp new CTO): abstain
+Probe D (weak evidence AI): segment_4_specialized_capability — AI conf 0.4
+Probe E (boundary score 2): abstain — AI conf 0.25
+Probe F (hiring no AI): abstain
+Probe G (determinism): True

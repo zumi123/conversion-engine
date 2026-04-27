@@ -1,5 +1,6 @@
 import json
 import os
+import re
 from datetime import datetime, timedelta
 
 
@@ -20,7 +21,8 @@ def load_crunchbase_data() -> list:
 def parse_employee_count(num_employees: str) -> int:
     """
     Convert employee range string to integer.
-    e.g. '11-50' -> 30, '1-10' -> 5
+    e.g. '51-100' -> 75, '1-10' -> 5,
+    '1001-5000' -> 3000
     """
     if not num_employees:
         return 0
@@ -33,19 +35,62 @@ def parse_employee_count(num_employees: str) -> int:
         return 0
 
 
-def parse_funding_rounds(funding_str: str) -> dict:
+def _safe_parse_json(val):
     """
-    Parse funding_rounds JSON string.
-    Returns funding info dict.
+    Safely parse a field that might be:
+    - already a list/dict (parsed)
+    - a JSON string (needs json.loads)
+    - empty/null
     """
-    if not funding_str or funding_str == "{}":
-        return {}
-    try:
-        if isinstance(funding_str, str):
-            return json.loads(funding_str)
-        return funding_str
-    except Exception:
-        return {}
+    if isinstance(val, (list, dict)):
+        return val
+    if isinstance(val, str) and val.strip():
+        try:
+            parsed = json.loads(val)
+            if isinstance(parsed, (list, dict)):
+                return parsed
+        except (json.JSONDecodeError, ValueError):
+            pass
+    return [] if not isinstance(val, dict) else {}
+
+
+def _extract_funding_type(title: str) -> str:
+    """
+    Extract funding type from round title.
+    e.g. 'Series A - Company' -> 'series_a'
+    e.g. 'Pre Seed Round - Company' -> 'pre_seed'
+    e.g. 'Venture Round - Company' -> 'venture'
+    """
+    if not title:
+        return "other"
+    title_lower = title.lower()
+
+    if "series a" in title_lower:
+        return "series_a"
+    elif "series b" in title_lower:
+        return "series_b"
+    elif "series c" in title_lower:
+        return "series_c"
+    elif "series d" in title_lower:
+        return "series_d"
+    elif "pre-seed" in title_lower or "pre seed" in title_lower:
+        return "pre_seed"
+    elif "seed" in title_lower:
+        return "seed"
+    elif "angel" in title_lower:
+        return "angel"
+    elif "convertible" in title_lower:
+        return "convertible_note"
+    elif "debt" in title_lower:
+        return "debt"
+    elif "venture" in title_lower:
+        return "venture"
+    elif "ipo" in title_lower:
+        return "ipo"
+    elif "grant" in title_lower:
+        return "grant"
+    else:
+        return "other"
 
 
 def lookup_company(
@@ -70,12 +115,13 @@ def lookup_company(
         )
         domain_match = (
             domain and (
-                domain in website or
-                domain in url
+                domain in (website or "") or
+                domain in (url or "")
             )
         )
 
         if name_match or domain_match:
+            print(f"  Found '{name}' in Crunchbase ODM")
             return _normalize_company(company)
 
     # Not found - use mock
@@ -86,38 +132,76 @@ def lookup_company(
 
 def _normalize_company(raw: dict) -> dict:
     """
-    Normalize raw Crunchbase CSV row to 
-    standard format.
+    Normalize raw Crunchbase ODM row to standard format.
+    Handles fields stored as JSON strings.
     """
-    # Parse funding rounds
-    funding_rounds = parse_funding_rounds(
-        raw.get("funding_rounds", "{}")
+    # Parse funding rounds list (may be JSON string)
+    funding_list = _safe_parse_json(
+        raw.get("funding_rounds_list", "[]")
     )
 
-    # Get funding info
+    # Extract latest funding info
     last_funding_at = None
     last_funding_usd = 0
     last_funding_type = "none"
 
-    funding_list = raw.get("funding_rounds_list", "[]")
-    if isinstance(funding_list, str):
-        try:
-            funding_list = json.loads(funding_list)
-        except Exception:
-            funding_list = []
+    if isinstance(funding_list, list) and len(funding_list) > 0:
+        # Sort by announced_on date to get latest
+        valid_rounds = [
+            r for r in funding_list
+            if isinstance(r, dict) and r.get("announced_on")
+        ]
+        if valid_rounds:
+            valid_rounds.sort(
+                key=lambda x: x.get("announced_on", ""),
+                reverse=True
+            )
+            latest = valid_rounds[0]
 
-    if funding_list:
-        # Get most recent funding round
-        latest = funding_list[-1] if funding_list else {}
-        last_funding_at = latest.get(
-            "announced_on", None
-        )
-        last_funding_usd = latest.get(
-            "money_raised_usd", 0
-        ) or 0
-        last_funding_type = latest.get(
-            "series", "other"
-        ).lower().replace(" ", "_")
+            last_funding_at = latest.get("announced_on")
+
+            # Extract amount — nested in money_raised dict
+            money = latest.get("money_raised", {})
+            if isinstance(money, dict):
+                last_funding_usd = (
+                    money.get("value_usd", 0) or
+                    money.get("value", 0) or 0
+                )
+            else:
+                last_funding_usd = 0
+
+            # Extract type from title
+            title = latest.get("title", "")
+            last_funding_type = _extract_funding_type(title)
+
+    # Parse leadership hires (may be JSON string)
+    leadership_hire = _safe_parse_json(
+        raw.get("leadership_hire", "[]")
+    )
+
+    # Parse layoffs (may be JSON string)
+    layoff = _safe_parse_json(
+        raw.get("layoff", "[]")
+    )
+
+    # Parse industries (may be JSON string)
+    industries = _safe_parse_json(
+        raw.get("industries", "[]")
+    )
+    industry_names = [
+        i.get("value", "") for i in industries
+        if isinstance(i, dict)
+    ]
+
+    # Parse builtwith tech (may be JSON string)
+    builtwith = _safe_parse_json(
+        raw.get("builtwith_tech", "[]")
+    )
+
+    # Parse current employees
+    employees = _safe_parse_json(
+        raw.get("current_employees", "[]")
+    )
 
     return {
         "crunchbase_id": raw.get("id", ""),
@@ -127,18 +211,25 @@ def _normalize_company(raw: dict) -> dict:
         "employee_count": parse_employee_count(
             raw.get("num_employees", "0")
         ),
+        "num_employees_raw": raw.get("num_employees", ""),
         "funding_total_usd": last_funding_usd,
         "last_funding_type": last_funding_type,
         "last_funding_at": last_funding_at,
         "last_funding_usd": last_funding_usd,
+        "funding_rounds_count": len(
+            [r for r in funding_list if isinstance(r, dict)]
+        ) if isinstance(funding_list, list) else 0,
         "country_code": raw.get("country_code", ""),
-        "city": raw.get("address", "").split(",")[0],
-        "categories": raw.get("industries", ""),
+        "city": (raw.get("address", "") or "").split(",")[0],
+        "categories": industry_names,
         "ipo_status": raw.get("ipo_status", "private"),
         "operating_status": raw.get(
             "operating_status", "active"
         ),
-        "builtwith_tech": raw.get("builtwith_tech", "[]"),
+        "builtwith_tech": builtwith,
+        "leadership_hire": leadership_hire,
+        "layoff_data": layoff,
+        "current_employees": employees,
         "is_mock": False
     }
 
@@ -160,15 +251,21 @@ def _mock_company(
         ),
         "short_description": "Technology company",
         "employee_count": 45,
+        "num_employees_raw": "11-50",
         "funding_total_usd": 14000000,
         "last_funding_type": "series_a",
         "last_funding_at": (
             datetime.now() - timedelta(days=90)
         ).strftime("%Y-%m-%d"),
         "last_funding_usd": 14000000,
+        "funding_rounds_count": 1,
         "country_code": "USA",
         "city": "San Francisco",
         "categories": ["artificial-intelligence", "saas"],
+        "builtwith_tech": [],
+        "leadership_hire": [],
+        "layoff_data": [],
+        "current_employees": [],
         "is_mock": True
     }
 
@@ -178,7 +275,7 @@ def check_funding_event(
     days: int = 180
 ) -> dict:
     """
-    Check if company had a funding event 
+    Check if company had a funding event
     in the last N days.
     """
     cutoff = datetime.now() - timedelta(days=days)
@@ -194,22 +291,9 @@ def check_funding_event(
         }
 
     try:
-        # Try multiple date formats
-        for fmt in ["%Y-%m-%d", "%Y-%m-%dT%H:%M:%S"]:
-            try:
-                funding_date = datetime.strptime(
-                    last_funding_at[:10], "%Y-%m-%d"
-                )
-                break
-            except Exception:
-                continue
-        else:
-            return {
-                "detected": False,
-                "stage": "none",
-                "amount_usd": 0,
-                "closed_at": None
-            }
+        funding_date = datetime.strptime(
+            last_funding_at[:10], "%Y-%m-%d"
+        )
 
         is_recent = funding_date >= cutoff
 
@@ -220,8 +304,12 @@ def check_funding_event(
             "series_c": "series_c",
             "series_d": "series_d_plus",
             "seed": "seed",
-            "debt_financing": "debt",
-            "debt": "debt"
+            "pre_seed": "pre_seed",
+            "angel": "angel",
+            "convertible_note": "convertible_note",
+            "venture": "venture",
+            "debt": "debt",
+            "grant": "grant",
         }
 
         funding_type = company_data.get(
@@ -264,7 +352,7 @@ def get_tech_stack(company_data: dict) -> list:
     Extract tech stack from BuiltWith data.
     Maps to Tenacious bench stacks.
     """
-    builtwith = company_data.get("builtwith_tech", "[]")
+    builtwith = company_data.get("builtwith_tech", [])
 
     if isinstance(builtwith, str):
         try:

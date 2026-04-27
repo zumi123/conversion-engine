@@ -1,0 +1,134 @@
+{
+  "prospect_domain": "newctotiny.com",
+  "prospect_name": "NewCTOTiny",
+  "generated_at": "2026-04-24T13:38:17.855001+00:00",
+  "primary_segment_match": "abstain",
+  "segment_confidence": 0.4,
+  "ai_maturity": {
+    "score": 0,
+    "confidence": 0.25,
+    "justifications": [
+      {
+        "signal": "ai_adjacent_open_roles",
+        "status": "No AI/ML open roles detected",
+        "weight": "high",
+        "confidence": "high"
+      },
+      {
+        "signal": "named_ai_ml_leadership",
+        "status": "No named AI/ML leadership found publicly",
+        "weight": "high",
+        "confidence": "medium"
+      },
+      {
+        "signal": "github_org_activity",
+        "status": "No public GitHub AI activity \u2014 may be private",
+        "weight": "medium",
+        "confidence": "low"
+      },
+      {
+        "signal": "executive_commentary",
+        "status": "No recent executive AI commentary found",
+        "weight": "medium",
+        "confidence": "medium"
+      }
+    ]
+  },
+  "hiring_velocity": {
+    "open_roles_today": 0,
+    "open_roles_60_days_ago": 0,
+    "velocity_label": "insufficient_signal",
+    "signal_confidence": 0.3,
+    "confidence_label": "low",
+    "sources": [
+      "remoteok_jobs"
+    ]
+  },
+  "buying_window_signals": {
+    "funding_event": {
+      "detected": true,
+      "stage": "series_a",
+      "amount_usd": 14000000,
+      "closed_at": "2026-01-24",
+      "days_ago": 90,
+      "valid_for_segment1": true,
+      "source_url": "https://newctotiny.com",
+      "signal_confidence": "medium"
+    },
+    "layoff_event": {
+      "detected": false,
+      "date": null,
+      "headcount_reduction": 0,
+      "percentage_cut": 0.0,
+      "source_url": "https://layoffs.fyi",
+      "signal_confidence": "low"
+    },
+    "leadership_change": {
+      "detected": true,
+      "role": "cto",
+      "new_leader_name": "Jane Test",
+      "started_at": "2026-03-01",
+      "source_url": "https://example.com",
+      "signal_confidence": "high",
+      "detection_method": "mock"
+    }
+  },
+  "tech_stack": [
+    "python"
+  ],
+  "bench_to_brief_match": {
+    "required_stacks": [
+      "python"
+    ],
+    "bench_available": true,
+    "gaps": []
+  },
+  "data_sources_checked": [
+    {
+      "source": "crunchbase_odm",
+      "status": "success",
+      "confidence": "low",
+      "fetched_at": "2026-04-24T13:38:17.740374+00:00"
+    },
+    {
+      "source": "crunchbase_funding",
+      "status": "success",
+      "confidence": "medium",
+      "fetched_at": "2026-04-24T13:38:17.740431+00:00"
+    },
+    {
+      "source": "layoffs_fyi",
+      "status": "no_data",
+      "confidence": "low",
+      "fetched_at": "2026-04-24T13:38:17.740456+00:00"
+    },
+    {
+      "source": "remoteok_jobs",
+      "status": "no_data",
+      "confidence": "low",
+      "job_count": 0,
+      "fetched_at": "2026-04-24T13:38:17.854634+00:00"
+    },
+    {
+      "source": "leadership_detection",
+      "status": "success",
+      "confidence": "high",
+      "method": "mock",
+      "fetched_at": "2026-04-24T13:38:17.854673+00:00"
+    }
+  ],
+  "honesty_flags": [
+    "weak_hiring_velocity_signal",
+    "weak_ai_maturity_signal",
+    "tech_stack_inferred_not_confirmed"
+  ],
+  "signal_confidence_summary": {
+    "crunchbase_firmographics": "low",
+    "funding_event": "medium",
+    "layoff_event": "low",
+    "leadership_change": "high",
+    "hiring_velocity": "low",
+    "ai_maturity": "low",
+    "overall_brief_confidence": "medium"
+  }
+}

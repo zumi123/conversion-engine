@@ -1,0 +1,330 @@
+{
+  "run_at": "2026-04-24T22:19:51.908031",
+  "total_probes": 28,
+  "passed": 26,
+  "failed": 2,
+  "by_category": {
+    "Tone Drift": {
+      "pass": 4,
+      "fail": 0
+    },
+    "Multi-thread Leakage": {
+      "pass": 2,
+      "fail": 0
+    },
+    "Cost Pathology": {
+      "pass": 1,
+      "fail": 2
+    },
+    "Dual Control": {
+      "pass": 2,
+      "fail": 0
+    },
+    "Scheduling": {
+      "pass": 2,
+      "fail": 0
+    },
+    "Signal Reliability": {
+      "pass": 6,
+      "fail": 0
+    },
+    "Gap Over-claiming": {
+      "pass": 2,
+      "fail": 0
+    },
+    "Signal Over-claiming": {
+      "pass": 3,
+      "fail": 0
+    },
+    "ICP Misclassification": {
+      "pass": 2,
+      "fail": 0
+    },
+    "Bench Over-commitment": {
+      "pass": 2,
+      "fail": 0
+    }
+  },
+  "probes": [
+    {
+      "probe_id": "4.1",
+      "category": "Tone Drift",
+      "hypothesis": "Email word count stays under 120",
+      "expected": "word_count < 120 AND tone_score = 5",
+      "actual": "word_count=77, tone=5",
+      "passed": true,
+      "severity": "MEDIUM",
+      "notes": ""
+    },
+    {
+      "probe_id": "4.2",
+      "category": "Tone Drift",
+      "hypothesis": "check_tone() flags banned phrases (rockstar, hope you're doing well, 10x)",
+      "expected": "tone_score < 5, violations listed",
+      "actual": "tone=1/5, violations=[\"Banned phrase: 'hope you're doing well'\", \"Banned phrase: 'rockstar'\", \"Banned phrase: 'ninja'\", 'Subject should start with Request/Follow-up/Context/Question']",
+      "passed": true,
+      "severity": "HIGH",
+      "notes": ""
+    },
+    {
+      "probe_id": "4.3",
+      "category": "Tone Drift",
+      "hypothesis": "Subject line stays under 60 chars for readability",
+      "expected": "len(subject) <= 60",
+      "actual": "len=27, subject=Question: ML capability gap",
+      "passed": true,
+      "severity": "LOW",
+      "notes": ""
+    },
+    {
+      "probe_id": "4.4",
+      "category": "Tone Drift",
+      "hypothesis": "Every email has Tenacious signature",
+      "expected": "'Tenacious' in body",
+      "actual": "Signature present: True",
+      "passed": true,
+      "severity": "LOW",
+      "notes": ""
+    },
+    {
+      "probe_id": "5.1",
+      "category": "Multi-thread Leakage",
+      "hypothesis": "Two prospects at same company get independent brief objects",
+      "expected": "brief_a and brief_b have same segment but separate data",
+      "actual": "a.segment=segment_4_specialized_capability, b.segment=segment_4_specialized_capability",
+      "passed": true,
+      "severity": "LOW",
+      "notes": ""
+    },
+    {
+      "probe_id": "5.2",
+      "category": "Multi-thread Leakage",
+      "hypothesis": "Mutating one brief does not affect subsequent runs",
+      "expected": "brief_d.segment = segment_4_specialized_capability",
+      "actual": "brief_d.segment = segment_4_specialized_capability",
+      "passed": true,
+      "severity": "LOW",
+      "notes": ""
+    },
+    {
+      "probe_id": "6.1",
+      "category": "Cost Pathology",
+      "hypothesis": "Empty company name should fail cleanly",
+      "expected": "Raises exception or returns error",
+      "actual": "Completed with segment: abstain",
+      "passed": false,
+      "severity": "MEDIUM",
+      "notes": "No input validation on empty strings"
+    },
+    {
+      "probe_id": "6.2",
+      "category": "Cost Pathology",
+      "hypothesis": "500-char name handling",
+      "expected": "Fails gracefully",
+      "actual": "Exception: OSError",
+      "passed": true,
+      "severity": "n/a",
+      "notes": ""
+    },
+    {
+      "probe_id": "6.3",
+      "category": "Cost Pathology",
+      "hypothesis": "Malformed mock_signals type",
+      "expected": "Should raise TypeError",
+      "actual": "Accepted silently: abstain",
+      "passed": false,
+      "severity": "MEDIUM",
+      "notes": ""
+    },
+    {
+      "probe_id": "7.1",
+      "category": "Dual Control",
+      "hypothesis": "Pipeline works without mock_signals (live path)",
+      "expected": "Returns valid brief with real data",
+      "actual": "segment=abstain, ai_score=0",
+      "passed": true,
+      "severity": "n/a",
+      "notes": ""
+    },
+    {
+      "probe_id": "7.2",
+      "category": "Dual Control",
+      "hypothesis": "Partial mock_signals works (only ai_signals, no leadership)",
+      "expected": "Leadership defaults to real detection",
+      "actual": "leadership_method=google_news_rss",
+      "passed": true,
+      "severity": "n/a",
+      "notes": ""
+    },
+    {
+      "probe_id": "8.1",
+      "category": "Scheduling",
+      "hypothesis": "Brief timestamps are UTC and timezone-aware",
+      "expected": "generated_at contains +00:00 or Z",
+      "actual": "generated_at=2026-04-24T22:19:48.876487+00:00",
+      "passed": true,
+      "severity": "LOW",
+      "notes": ""
+    },
+    {
+      "probe_id": "8.2",
+      "category": "Scheduling",
+      "hypothesis": "Same input at different times produces consistent segment",
+      "expected": "segment identical across runs",
+      "actual": "t1=abstain, t2=abstain",
+      "passed": true,
+      "severity": "n/a",
+      "notes": ""
+    },
+    {
+      "probe_id": "9.1",
+      "category": "Signal Reliability",
+      "hypothesis": "Zero signals should produce score 0",
+      "expected": "score=0",
+      "actual": "score=0, confidence=0.25",
+      "passed": true,
+      "severity": "HIGH",
+      "notes": ""
+    },
+    {
+      "probe_id": "9.2",
+      "category": "Signal Reliability",
+      "hypothesis": "Only low-weight signals should max out at score 1",
+      "expected": "score <= 1",
+      "actual": "score=0",
+      "passed": true,
+      "severity": "MEDIUM",
+      "notes": ""
+    },
+    {
+      "probe_id": "9.3",
+      "category": "Signal Reliability",
+      "hypothesis": "All signals true produces maximum score 3",
+      "expected": "score=3, confidence >= 0.6",
+      "actual": "score=3, confidence=0.5",
+      "passed": true,
+      "severity": "n/a",
+      "notes": ""
+    },
+    {
+      "probe_id": "9.4",
+      "category": "Signal Reliability",
+      "hypothesis": "Score is capped at 3 even with extreme inputs",
+      "expected": "score=3 (capped)",
+      "actual": "score=3",
+      "passed": true,
+      "severity": "LOW",
+      "notes": ""
+    },
+    {
+      "probe_id": "9.5",
+      "category": "Signal Reliability",
+      "hypothesis": "Negative ai_open_roles handled",
+      "expected": "Treated as 0 or raises error",
+      "actual": "score=0",
+      "passed": true,
+      "severity": "LOW",
+      "notes": ""
+    },
+    {
+      "probe_id": "9.6",
+      "category": "Signal Reliability",
+      "hypothesis": "Output includes per-signal justifications",
+      "expected": "justifications list with weight/status/confidence per signal",
+      "actual": "justifications_count=4",
+      "passed": true,
+      "severity": "MEDIUM",
+      "notes": ""
+    },
+    {
+      "probe_id": "10.1",
+      "category": "Gap Over-claiming",
+      "hypothesis": "Gap brief for prospect already at top quartile",
+      "expected": "Should abstain or indicate at-or-above top quartile",
+      "actual": "gaps=0",
+      "passed": true,
+      "severity": "MEDIUM",
+      "notes": ""
+    },
+    {
+      "probe_id": "10.2",
+      "category": "Gap Over-claiming",
+      "hypothesis": "Gap brief generated for low-maturity prospect",
+      "expected": "Should identify meaningful gaps to close",
+      "actual": "gaps=0",
+      "passed": true,
+      "severity": "n/a",
+      "notes": ""
+    },
+    {
+      "probe_id": "2.6",
+      "category": "Signal Over-claiming",
+      "hypothesis": "Honesty flag fires for weak hiring velocity",
+      "expected": "weak_hiring_velocity_signal in honesty_flags",
+      "actual": "flags=['weak_hiring_velocity_signal', 'weak_ai_maturity_signal', 'tech_stack_inferred_not_confirmed']",
+      "passed": true,
+      "severity": "MEDIUM",
+      "notes": ""
+    },
+    {
+      "probe_id": "2.7",
+      "category": "Signal Over-claiming",
+      "hypothesis": "Honesty flag fires for weak AI maturity",
+      "expected": "weak_ai_maturity_signal in honesty_flags",
+      "actual": "flags=['weak_hiring_velocity_signal', 'weak_ai_maturity_signal', 'tech_stack_inferred_not_confirmed']",
+      "passed": true,
+      "severity": "HIGH",
+      "notes": ""
+    },
+    {
+      "probe_id": "2.8",
+      "category": "Signal Over-claiming",
+      "hypothesis": "tech_stack_inferred_not_confirmed flag fires for mock companies",
+      "expected": "Flag in honesty_flags when company not in ODM",
+      "actual": "flags=['weak_hiring_velocity_signal', 'tech_stack_inferred_not_confirmed']",
+      "passed": true,
+      "severity": "MEDIUM",
+      "notes": ""
+    },
+    {
+      "probe_id": "1.6",
+      "category": "ICP Misclassification",
+      "hypothesis": "Zero signals should produce abstain, not fallback to Seg 1",
+      "expected": "segment=abstain",
+      "actual": "segment=abstain",
+      "passed": true,
+      "severity": "HIGH",
+      "notes": ""
+    },
+    {
+      "probe_id": "1.7",
+      "category": "ICP Misclassification",
+      "hypothesis": "segment_confidence is bounded [0.4, 1.0]",
+      "expected": "0.4 <= confidence <= 1.0",
+      "actual": "confidence=0.7",
+      "passed": true,
+      "severity": "LOW",
+      "notes": ""
+    },
+    {
+      "probe_id": "3.5",
+      "category": "Bench Over-commitment",
+      "hypothesis": "Every brief includes bench_to_brief_match field",
+      "expected": "bench_to_brief_match with gaps list",
+      "actual": "has_field=True, gaps=[]",
+      "passed": true,
+      "severity": "MEDIUM",
+      "notes": ""
+    },
+    {
+      "probe_id": "3.6",
+      "category": "Bench Over-commitment",
+      "hypothesis": "tech_stack defaults to ['python'] when no signals",
+      "expected": "stacks list is non-empty",
+      "actual": "stacks=['python']",
+      "passed": true,
+      "severity": "LOW",
+      "notes": ""
+    }
+  ]
+}

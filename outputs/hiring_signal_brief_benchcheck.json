@@ -1,0 +1,133 @@
+{
+  "prospect_domain": "benchcheck.com",
+  "prospect_name": "BenchCheck",
+  "generated_at": "2026-04-24T22:19:51.773178+00:00",
+  "primary_segment_match": "segment_4_specialized_capability",
+  "segment_confidence": 0.7,
+  "ai_maturity": {
+    "score": 2,
+    "confidence": 0.5,
+    "justifications": [
+      {
+        "signal": "ai_adjacent_open_roles",
+        "status": "Found 2 AI/ML open roles (40% of total openings)",
+        "weight": "high",
+        "confidence": "medium"
+      },
+      {
+        "signal": "named_ai_ml_leadership",
+        "status": "AI/ML leadership role detected (Head of AI, VP Data, or equivalent)",
+        "weight": "high",
+        "confidence": "high"
+      },
+      {
+        "signal": "github_org_activity",
+        "status": "No public GitHub AI activity \u2014 may be private",
+        "weight": "medium",
+        "confidence": "low"
+      },
+      {
+        "signal": "executive_commentary",
+        "status": "CEO/CTO has publicly named AI as strategic priority in last 12 months",
+        "weight": "medium",
+        "confidence": "high"
+      }
+    ]
+  },
+  "hiring_velocity": {
+    "open_roles_today": 0,
+    "open_roles_60_days_ago": 0,
+    "velocity_label": "insufficient_signal",
+    "signal_confidence": 0.3,
+    "confidence_label": "low",
+    "sources": [
+      "remoteok_jobs"
+    ]
+  },
+  "buying_window_signals": {
+    "funding_event": {
+      "detected": true,
+      "stage": "series_a",
+      "amount_usd": 14000000,
+      "closed_at": "2026-01-24",
+      "days_ago": 90,
+      "valid_for_segment1": true,
+      "source_url": "https://benchcheck.com",
+      "signal_confidence": "medium"
+    },
+    "layoff_event": {
+      "detected": false,
+      "date": null,
+      "headcount_reduction": 0,
+      "percentage_cut": 0.0,
+      "source_url": "https://layoffs.fyi",
+      "signal_confidence": "low"
+    },
+    "leadership_change": {
+      "detected": false,
+      "role": "none",
+      "new_leader_name": null,
+      "started_at": null,
+      "source_url": null,
+      "signal_confidence": "medium",
+      "detection_method": "mock"
+    }
+  },
+  "tech_stack": [
+    "ml"
+  ],
+  "bench_to_brief_match": {
+    "required_stacks": [
+      "ml"
+    ],
+    "bench_available": true,
+    "gaps": []
+  },
+  "data_sources_checked": [
+    {
+      "source": "crunchbase_odm",
+      "status": "success",
+      "confidence": "low",
+      "fetched_at": "2026-04-24T22:19:51.688411+00:00"
+    },
+    {
+      "source": "crunchbase_funding",
+      "status": "success",
+      "confidence": "medium",
+      "fetched_at": "2026-04-24T22:19:51.688472+00:00"
+    },
+    {
+      "source": "layoffs_fyi",
+      "status": "no_data",
+      "confidence": "low",
+      "fetched_at": "2026-04-24T22:19:51.688498+00:00"
+    },
+    {
+      "source": "remoteok_jobs",
+      "status": "no_data",
+      "confidence": "low",
+      "job_count": 0,
+      "fetched_at": "2026-04-24T22:19:51.772827+00:00"
+    },
+    {
+      "source": "leadership_detection",
+      "status": "no_data",
+      "confidence": "medium",
+      "method": "mock",
+      "fetched_at": "2026-04-24T22:19:51.772860+00:00"
+    }
+  ],
+  "honesty_flags": [
+    "weak_hiring_velocity_signal",
+    "tech_stack_inferred_not_confirmed"
+  ],
+  "signal_confidence_summary": {
+    "crunchbase_firmographics": "low",
+    "funding_event": "medium",
+    "layoff_event": "low",
+    "leadership_change": "medium",
+    "hiring_velocity": "low",
+    "ai_maturity": "medium",
+    "overall_brief_confidence": "high"
+  }
+}

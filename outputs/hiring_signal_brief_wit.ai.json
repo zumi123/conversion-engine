@@ -1,0 +1,133 @@
+{
+  "prospect_domain": "wit.ai",
+  "prospect_name": "Wit.ai",
+  "generated_at": "2026-04-24T22:43:04.854539+00:00",
+  "primary_segment_match": "abstain",
+  "segment_confidence": 0.4,
+  "ai_maturity": {
+    "score": 0,
+    "confidence": 0.25,
+    "justifications": [
+      {
+        "signal": "ai_adjacent_open_roles",
+        "status": "No AI/ML open roles detected",
+        "weight": "high",
+        "confidence": "high"
+      },
+      {
+        "signal": "named_ai_ml_leadership",
+        "status": "No named AI/ML leadership found publicly",
+        "weight": "high",
+        "confidence": "medium"
+      },
+      {
+        "signal": "github_org_activity",
+        "status": "No public GitHub AI activity \u2014 may be private",
+        "weight": "medium",
+        "confidence": "low"
+      },
+      {
+        "signal": "executive_commentary",
+        "status": "No recent executive AI commentary found",
+        "weight": "medium",
+        "confidence": "medium"
+      }
+    ]
+  },
+  "hiring_velocity": {
+    "open_roles_today": 0,
+    "open_roles_60_days_ago": 0,
+    "velocity_label": "insufficient_signal",
+    "signal_confidence": 0.3,
+    "confidence_label": "low",
+    "sources": [
+      "remoteok_jobs"
+    ]
+  },
+  "buying_window_signals": {
+    "funding_event": {
+      "detected": false,
+      "stage": "other",
+      "amount_usd": 0,
+      "closed_at": "2014-03-25",
+      "days_ago": 4413,
+      "valid_for_segment1": false,
+      "source_url": "https://www.wit.ai/",
+      "signal_confidence": "low"
+    },
+    "layoff_event": {
+      "detected": false,
+      "date": null,
+      "headcount_reduction": 0,
+      "percentage_cut": 0.0,
+      "source_url": "https://layoffs.fyi",
+      "signal_confidence": "low"
+    },
+    "leadership_change": {
+      "detected": true,
+      "role": "cto",
+      "new_leader_name": null,
+      "started_at": null,
+      "source_url": "https://news.google.com/",
+      "signal_confidence": "medium",
+      "detection_method": "google_news_rss"
+    }
+  },
+  "tech_stack": [
+    "python"
+  ],
+  "bench_to_brief_match": {
+    "required_stacks": [
+      "python"
+    ],
+    "bench_available": true,
+    "gaps": []
+  },
+  "data_sources_checked": [
+    {
+      "source": "crunchbase_odm",
+      "status": "success",
+      "confidence": "high",
+      "fetched_at": "2026-04-24T22:43:03.673022+00:00"
+    },
+    {
+      "source": "crunchbase_funding",
+      "status": "no_data",
+      "confidence": "low",
+      "fetched_at": "2026-04-24T22:43:03.673868+00:00"
+    },
+    {
+      "source": "layoffs_fyi",
+      "status": "no_data",
+      "confidence": "low",
+      "fetched_at": "2026-04-24T22:43:03.673955+00:00"
+    },
+    {
+      "source": "remoteok_jobs",
+      "status": "no_data",
+      "confidence": "low",
+      "job_count": 0,
+      "fetched_at": "2026-04-24T22:43:03.885834+00:00"
+    },
+    {
+      "source": "leadership_detection",
+      "status": "success",
+      "confidence": "medium",
+      "method": "google_news_rss",
+      "fetched_at": "2026-04-24T22:43:04.854069+00:00"
+    }
+  ],
+  "honesty_flags": [
+    "weak_hiring_velocity_signal",
+    "weak_ai_maturity_signal"
+  ],
+  "signal_confidence_summary": {
+    "crunchbase_firmographics": "high",
+    "funding_event": "low",
+    "layoff_event": "low",
+    "leadership_change": "medium",
+    "hiring_velocity": "low",
+    "ai_maturity": "low",
+    "overall_brief_confidence": "medium"
+  }
+}

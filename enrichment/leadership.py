@@ -1,6 +1,7 @@
 import requests
 import os
 import json
+import re
 from datetime import datetime, timedelta
 from dotenv import load_dotenv
 
@@ -18,8 +19,8 @@ def check_leadership_change(
 
     Sources:
     1. Crunchbase ODM people data (leadership_hire field)
-    2. LinkedIn public profile hints via job post language
-    3. Press release scraping via Google News RSS
+    2. Press release scraping via Google News RSS
+    3. Job post language hints
     """
     result = {
         "detected": False,
@@ -31,21 +32,25 @@ def check_leadership_change(
         "method": None
     }
 
+    # Skip if company name is too short (high false positive risk)
+    if len(company_name.strip()) < 4:
+        return result
+
     # Source 1: Check Crunchbase ODM leadership_hire field
     crunchbase_result = _check_crunchbase_leadership(
         company_name
     )
-    if crunchbase_result["detected"]:
+    if crunchbase_result.get("detected"):
         return crunchbase_result
 
     # Source 2: Check Google News RSS for press releases
     news_result = _check_news_rss(company_name, days)
-    if news_result["detected"]:
+    if news_result.get("detected"):
         return news_result
 
     # Source 3: Check job posts for "new CTO" language
     jobpost_result = _check_job_signals(company_name)
-    if jobpost_result["detected"]:
+    if jobpost_result.get("detected"):
         return jobpost_result
 
     return result
@@ -82,7 +87,8 @@ def _check_crunchbase_leadership(
                 except Exception:
                     continue
 
-            if not leadership_hire:
+            if not isinstance(leadership_hire, list) or \
+                    not leadership_hire:
                 continue
 
             cutoff = datetime.now() - timedelta(days=90)
@@ -156,13 +162,26 @@ def _check_news_rss(
     """
     Check Google News RSS for CTO/VP Engineering
     appointment press releases.
-    No login required — public RSS feed.
+
+    STRICT matching rules:
+    1. Only check article titles inside <item> blocks
+       (skip the feed-level title which contains our query)
+    2. Company name must appear in the article title
+    3. A leadership keyword must appear in same title
+    4. An appointment verb must appear in same title
+    5. Company must appear before the verb (subject check)
+       to avoid "OtherCo hires ex-CompanyName person"
     """
+    # Skip short names — too many false positives
+    if len(company_name.strip()) < 4:
+        return {"detected": False}
+
     try:
         query = (
-            f"{company_name} "
-            f"(CTO OR 'VP Engineering' OR 'Chief Technology') "
-            f"appointed OR joins OR named OR hires"
+            f'"{company_name}" '
+            f"(CTO OR \"VP Engineering\" OR "
+            f"\"Chief Technology\") "
+            f"(appointed OR joins OR named OR hires)"
         )
         rss_url = (
             f"https://news.google.com/rss/search?"
@@ -184,53 +203,109 @@ def _check_news_rss(
         if response.status_code != 200:
             return {"detected": False}
 
-        content = response.text.lower()
-        cutoff_str = (
-            datetime.now() - timedelta(days=days)
-        ).strftime("%Y")
+        # Extract only article titles inside <item> blocks
+        # Skip feed-level <title> which contains our query
+        items = re.findall(
+            r'<item>(.*?)</item>',
+            response.text,
+            re.DOTALL
+        )
 
-        # Look for leadership keywords in recent news
+        titles = []
+        for item in items:
+            # Try CDATA first
+            match = re.search(
+                r'<title><!\[CDATA\[(.*?)\]\]></title>',
+                item
+            )
+            if not match:
+                match = re.search(
+                    r'<title>(.*?)</title>',
+                    item
+                )
+            if match:
+                titles.append(match.group(1))
+
+        # Leadership keywords to look for
         leadership_keywords = [
-            "appointed cto",
-            "new cto",
-            "joins as cto",
-            "named cto",
+            "cto",
+            "chief technology officer",
             "vp of engineering",
             "vp engineering",
-            "chief technology officer"
+            "head of engineering"
+        ]
+
+        # Appointment verbs — must also be present
+        appointment_verbs = [
+            "appoints", "appointed", "names",
+            "named", "hires", "hired",
+            "joins as", "announces"
         ]
 
         company_lower = company_name.lower()
-        found_keyword = None
 
-        for kw in leadership_keywords:
-            if kw in content and company_lower in content:
-                found_keyword = kw
-                break
+        # Check each article title individually
+        for title in titles:
+            title_lower = title.lower()
 
-        if found_keyword:
-            # Extract article URL from RSS
-            import re
-            urls = re.findall(
-                r'<link>(https?://[^<]+)</link>',
-                response.text
+            # Rule 1: Company name must be in this title
+            if company_lower not in title_lower:
+                continue
+
+            # Rule 2: An appointment verb must be present
+            has_verb = any(
+                v in title_lower for v in appointment_verbs
             )
-            source_url = urls[1] if len(urls) > 1 else None
+            if not has_verb:
+                continue
 
-            role = "cto"
-            if "vp" in found_keyword or "engineering" in found_keyword:
-                role = "vp_engineering"
+            # Rule 3: Company must be the SUBJECT
+            # (appear before or near the verb, not after)
+            # "Snap appoints new CTO" = good
+            # "Nubank hires ex-Snap exec" = bad
+            company_pos = title_lower.find(company_lower)
+            verb_positions = [
+                title_lower.find(v)
+                for v in appointment_verbs
+                if v in title_lower
+            ]
+            if verb_positions:
+                earliest_verb = min(
+                    p for p in verb_positions if p >= 0
+                )
+                # If company appears well after the verb,
+                # it's likely the source, not the subject
+                if company_pos > earliest_verb + 15:
+                    continue
 
-            return {
-                "detected": True,
-                "role": role,
-                "new_leader_name": None,
-                "started_at": None,
-                "source_url": source_url,
-                "confidence": "medium",
-                "method": "google_news_rss",
-                "keyword_found": found_keyword
-            }
+            # Rule 4: A leadership keyword in same title
+            for kw in leadership_keywords:
+                if kw in title_lower:
+                    # Extract article URLs from RSS
+                    urls = re.findall(
+                        r'<link>(https?://[^<]+)</link>',
+                        response.text
+                    )
+                    source_url = (
+                        urls[1] if len(urls) > 1 else None
+                    )
+
+                    role = "cto"
+                    if "vp" in kw or \
+                            "head of engineering" in kw:
+                        role = "vp_engineering"
+
+                    return {
+                        "detected": True,
+                        "role": role,
+                        "new_leader_name": None,
+                        "started_at": None,
+                        "source_url": source_url,
+                        "confidence": "medium",
+                        "method": "google_news_rss",
+                        "keyword_found": kw,
+                        "matched_title": title[:100]
+                    }
 
     except Exception as e:
         print(f"  News RSS check error: {e}")
@@ -244,6 +319,10 @@ def _check_job_signals(company_name: str) -> dict:
     a leadership transition (e.g. 'reporting to new CTO').
     Weak signal — low confidence only.
     """
+    # Skip short names
+    if len(company_name.strip()) < 4:
+        return {"detected": False}
+
     try:
         response = requests.get(
             "https://remoteok.com/api",
@@ -265,7 +344,9 @@ def _check_job_signals(company_name: str) -> dict:
             company = job.get("company", "").lower()
             desc = job.get("description", "").lower()
 
-            if company_name.lower() not in company:
+            # Strict match: company name must match
+            # the job's company field exactly
+            if company_name.lower() != company:
                 continue
 
             for kw in transition_keywords:
